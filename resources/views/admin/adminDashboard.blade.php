@@ -8,7 +8,7 @@
                 <div class="col-md-12 col-xs-11">
 
                     <div class="col-lg-2 col-xs-12 col bg-primary shadow menuContainer hover">
-                        <a href="#" class="menuLink text-decoration-none">Register Student </a><br>
+                        <a href="{{ URL::to('register.student.add') }}" class="menuLink text-decoration-none">Register Student </a><br>
                         <i class="fa fa-cash-register"></i>
 
                     </div>

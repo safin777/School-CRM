@@ -10,4 +10,12 @@ class AdminController extends Controller
     {
         return view('admin.adminDashboard');
     }
+
+    public function registerView()
+    {
+        return view ('admin.registerStudent');
+
+    }
 }
+
+

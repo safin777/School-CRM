@@ -23,6 +23,8 @@ Route::get('/','IndexController@viewIndex');
 //admin routes
 Route::get('admin.login','AdminLoginController@viewLogin')->name('admin.login');
 Route::get('admin.dashboard','AdminController@viewAdminDashboard')->name('admin.dashboard');
+Route::get('register.student.add','AdminController@registerView')->name('register.student.add');
+
 
 
 //admin routes end
