@@ -75,37 +75,46 @@
                     <ul>
                         <li class="menu-title">Main</li>
                         <li class="active">
-                            <a href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                            <a href="{{ url('admin.dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
 
                         <li>
-                            <a href="{{ url('doctor') }}"><i class="fa fa-user-md"></i> <span>Students Info</span></a>
+                            <a href="{{ url('register.student.add') }}"><i class="fa fa-user-md"></i> <span>Register User</span></a>
                         </li>
 
-                        <li>
-                            <a href="{{ url('patient') }}"><i class="fa fa-wheelchair"></i> <span>Teachers Info</span></a>
-                        </li>
+                        <li class="submenu">
+							<a href="#"><i class="fa fa-user"></i> <span> User List </span> <span class="menu-arrow"></span></a>
+							<ul style="display: none;">
+								<li><a href="{{ url('employee') }}">Students List</a></li>
+                                <li><a href="{{ url('employee') }}">Teacher List</a></li>
+							</ul>
+						</li>
 
-                        <li>
-                            <a href="{{ url('department') }}"><i class="fa fa-calendar"></i> <span>Notice </span></a>
-                        </li>
+                        <li class="submenu">
+							<a href="#"><i class="fa fa-user"></i> <span> Notices</span> <span class="menu-arrow"></span></a>
+							<ul style="display: none;">
+								<li><a href="{{ url('employee') }}">View All Notice</a></li>
+                                <li><a href="{{ url('employee') }}">Add Notice</a></li>
+							</ul>
+						</li>
 
-                        <li>
-                            <a href="{{ url('blood') }}"><i class="fa fa-medkit"></i> <span>Transaction</span></a>
-                        </li>
-
-                        <li>
-                            <a href="{{ url ('store') }}"><i class="fa fa-certificate"></i> <span>Accounts</span></a>
-                        </li>
-
-
-
+                        <li class="submenu">
+							<a href="#"><i class="fa fa-user"></i> <span>Money Transaction</span> <span class="menu-arrow"></span></a>
+							<ul style="display: none;">
+								<li><a href="{{ url('employee') }}">All Transanction List</a></li>
+                                <li><a href="{{ url('employee') }}">Teachers Payroll</a></li>
+                                <li><a href="{{ url('employee') }}">Add Payroll</a></li>
+                                <li><a href="{{ url('employee') }}">Students Fees List</a></li>
+							</ul>
+						</li>
 
 
 						<li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-user"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="{{ url('employee') }}">Employee List</a></li>
+								<li><a href="{{ url('employee') }}">Transaction Report</a></li>
+                                <li><a href="{{ url('employee') }}">Student Report</a></li>
+                                <li><a href="{{ url('employee') }}">Teacher Report</a></li>
 
 
 							</ul>

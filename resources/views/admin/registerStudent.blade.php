@@ -40,21 +40,21 @@
 
                             <div class="card-body text-sm">
 
-                                <form action="{{ URL::to('/office/addBranch')}}" method="post">
+                                <form action="{{ URL::to('/office/addBranch')}}"  method="post" enctype="multipart/form-data>
                                 @csrf
 
                                     <div class="row">
                                         <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Name :<span style="color:red;">*</span></label>
-                                            <input type="text" class="form-control" name="name" placeholder="Name" value="" id="">
+                                            <input type="text" class="form-control" name="s_name" placeholder="Name" value="" id="" required>
                                         </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                             <label for="">Email :<span style="color:red;">*</span></label>
-                                            <input type="email" class="form-control" name="email" placeholder="Email" value="" id="">
+                                            <input type="email" class="form-control" name="s_email" placeholder="Email" value="" id="" required>
                                         </div>
                                         </div>
                                     </div>
@@ -64,14 +64,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Address :<span style="color:red;">*</span></label>
-                                                <textarea class="form-control" name="address" ></textarea>
+                                                <textarea class="form-control" name="s_address" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Birth Certificate No:<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_birth_certificate_no" placeholder="Enter Birth Certificate No" value="" id="">
+                                                <input type="text" class="form-control" name="s_birth_certificate_no" placeholder="Enter Birth Certificate No" value="" id="" required>
                                             </div>
                                         </div>
                                     </div>
@@ -80,14 +80,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for=""> Mother's Name:<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_mother" placeholder="Mother Name" value="" id="">
+                                                <input type="text" class="form-control" name="s_mother_name" placeholder="Mother Name" value="" id="" required>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Father's Name :<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_father" placeholder="Father Name" value="" id="">
+                                                <input type="text" class="form-control" name="s_father_name" placeholder="Father Name" value="" id="" required>
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +96,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="">Class :<span style="color:red;">*</span></label>
-                                                <select class="form-control" name="s_class" aria-label="Default select example">
+                                                <select class="form-control" name="s_class" aria-label="Default select example" required>
                                                     <option selected value="0">Nursery</option>
                                                     <option value="1">One</option>
                                                     <option value="2">Two</option>
@@ -117,7 +117,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="">Gender :<span style="color:red;">*</span></label>
-                                                <select class="form-control" name="s_gender" aria-label="Default select example">
+                                                <select class="form-control" name="s_gender" aria-label="Default select example" required>
                                                     <option selected value="male">Male</option>
                                                     <option value="female">Female</option>
                                                     <option value="others">Others</option>
@@ -128,7 +128,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="">Status :<span style="color:red;">*</span></label>
-                                                <select class="form-control" name="s_status" aria-label="Default select example">
+                                                <select class="form-control" name="s_status" aria-label="Default select example" required>
                                                     <option selected value="1">Active</option>
                                                     <option value="2">Inactive</option>
                                                 </select>
@@ -140,14 +140,14 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                 <label for="">Date Of Birth:<span style="color:red;">*</span></label>
-                                                <input type="date" class="form-control" name="s_dob" placeholder="Select Date of Birth" value="" id="">
+                                                <input type="date" class="form-control" name="s_dob" placeholder="Select Date of Birth" value="" id="" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="">Religion:<span style="color:red;">*</span></label>
-                                                    <select class="form-control" name="status" aria-label="Default select example">
+                                                    <select class="form-control" name="status" aria-label="Default select example" required>
                                                         <option selected value="islam">Islam</option>
                                                         <option value="hindu">Hindu</option>
                                                         <option value="buddish">Buddish</option>
@@ -169,7 +169,7 @@
                                         <div class="col-md-4">
                                         <div class="form-group">
                                                 <label for="">Gurdian Name:<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_gurdian" placeholder="Gurdian Name" value="" id="">
+                                                <input type="text" class="form-control" name="s_gurdian" placeholder="Gurdian Name" value="" id="" required>
                                         </div>
                                         </div>
 
@@ -177,7 +177,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="">Gurdian Phone No:<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_gurdian_phone" placeholder="Gurdian Phone No" value="" id="">
+                                                <input type="text" class="form-control" name="s_gurdian_phone" placeholder="Gurdian Phone No" value="" id="" required>
                                         </div>
                                         </div>
 
@@ -192,9 +192,15 @@
 
 
                                     <div class="row">
-                                        <div class="col-md-6 mx-auto">
+                                        <div class="col-md-2">
                                             <div class="form-group">
-                                            <input type="submit" class="btn btn-success btn-block hover" value="Confirm">
+                                            <input type="file" class="image" name="s_image" value="Choose image file" >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                            <input type="submit" class="btn btn-success btn-block hover" value="Confirm" >
                                             </div>
                                         </div>
                                     </div>
