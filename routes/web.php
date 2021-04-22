@@ -26,7 +26,7 @@ Route::get('admin.dashboard','AdminController@viewAdminDashboard')->name('admin.
 
 //admin routes end
 Route::get('register.student.add','AdminController@registerView')->name('register.student.add');
-Route::post('register.student','RegistrationController@addStudent')->name('register.student');
+Route::post('register/student','RegistrationController@addStudent');
 
 
 //registration controller route

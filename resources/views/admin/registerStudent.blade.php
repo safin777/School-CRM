@@ -10,7 +10,7 @@
 
                                 </div><!-- /.col -->
                                 <div class="col-sm-8">
-
+                                                            <!--Error message generate here -->
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
@@ -20,6 +20,7 @@
                                             </ul>
                                         </div>
                                     @endif
+
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active">Register User</li>
@@ -50,15 +51,13 @@
 
                             <div class="card-body text-sm">
 
-                                <form action="{{ URL::to('register.student')}}"  method="post" enctype="multipart/form-data>
-                                @csrf
-
+                                <form action="{{ URL::to('register/student')}}"  method="post" enctype="multipart/form-data>
+                                    {{ csrf_field() }}
                                     <div class="row">
                                         <div class="col-md-6">
                                         <div class="form-group ">
                                             <label for="">Name :<span style="color:red;">*</span></label>
                                             <input type="text" class="form-control" name="s_name" placeholder="Name" value="" id="">
-
                                         </div>
                                         </div>
 
@@ -229,7 +228,7 @@
 
                             <div class="card-body text-sm">
 
-                                <form action="{{ URL::to('/office/addBranch')}}" method="post">
+                                <form action="#" method="post">
                                 @csrf
 
                                     <div class="row">
