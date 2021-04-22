@@ -14,7 +14,7 @@ use Redirect;
 
 class RegistrationController extends Controller
 {
-   public function addStudent(Request $request){
+   public function addStudentRequest $request){
     $validatedData=Validator::make($request->all(),[
                                 's_name' => 'required|max:100',
                                 's_email' => 'required|email|unique:students,s_email|max:60',
@@ -43,25 +43,26 @@ class RegistrationController extends Controller
 
                         ]);
 
-                        $data =array()[
-                            's_name'=>$request->s_name,
-                            's_email'=>$request->s_email,
-                            's_address'=>$request->s_address,
-                            's_class'=>$request->s_class,
-                            's_status'=>$request->s_status,
-                            's_father_name'=>$request->s_father_name,
-                            's_mother_name'=>$request->s_mother_name,
-                            's_birth_certificate_no'=>$request->s_birth_certificate_no,
-                            's_gender'=>$request->s_gend'),
-                            's_gurdian'=>$request->s_gurdn'),
-                            's_gurdian_phone'=>$request->s_gurdn_phone'),
-                            's_dob'=>$request->s_dob'
-                            's_religion'=>$request->s_relion'),
-                            's_image'=>$request->p_imag,
-                            'timestamp'=>date('Y-m-d H:i:s'),
-                            's_phone'=>$request->s_phon),
+                        $data =array();
 
-                                 ];
+                            $data['s_name']=$request->s_name;
+                            $data['s_email']=$request->s_email;
+                            $data['s_address']=$request->s_address;
+                            $data['s_class']=$request->s_class;
+                            $data['s_status']=$request->s_status;
+                            $data['s_father_name']=$request->s_father_name;
+                            $data['s_mother_name']=$request->s_mother_name;
+                            $data['s_birth_certificate_no']=$request->s_birth_certificate_no;
+                            $data['s_gender']=$request->s_gender;
+                            $data['s_gurdian']=$request->s_gurdian;
+                            $data['s_gurdian_phone']=$request->s_gurdian_phone;
+                            $data['s_dob']=$request->s_dob;
+                            $data['s_religion']=$request->s_religion;
+                            $data['s_image']=$request->p_image;
+                            $data['timestamp']=date('Y-m-d H:i:s');
+                            $data['s_phone']=$request->s_phone);
+
+
 
 
                      if($request->hasfile('s_image'))
