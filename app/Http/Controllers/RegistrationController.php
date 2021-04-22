@@ -10,11 +10,13 @@ use DB;
 use PDF;
 use Session;
 use Redirect;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 
 class RegistrationController extends Controller
 {
-   public function addStudentRequest $request){
+   public function addStudent(Request $request){
     $validatedData=Validator::make($request->all(),[
                                 's_name' => 'required|max:100',
                                 's_email' => 'required|email|unique:students,s_email|max:60',
@@ -58,32 +60,29 @@ class RegistrationController extends Controller
                             $data['s_gurdian_phone']=$request->s_gurdian_phone;
                             $data['s_dob']=$request->s_dob;
                             $data['s_religion']=$request->s_religion;
-                            $data['s_image']=$request->p_image;
+                           // $data['s_image']=$request->p_image;
                             $data['timestamp']=date('Y-m-d H:i:s');
-                            $data['s_phone']=$request->s_phone);
+                            $data['s_phone']=$request->s_phone;
+
+
+                             //return response()->json($data);
+
+
+                            //$image=$request->file('s_image');
+                            // $slider=$request->file('s_image');
+                            // $filename = rand(111111, 999999);
+                            // $extension = $slider->extension();
+                            // $getFileExt = $filename + '.' +$extension;
+                            // $slider->move(public_path('public/user Image/'), $getFileExt);
+                            // $data['s_image'] = $getFileExt;
 
 
 
+                            $filename =  $request->file('s_image')->getClientOriginalName();
+                            $request->file('s_image')->move(public_path('public/user Image/'), $filename);
+                            $data['s-image']=$filename;
 
-                     if($request->hasfile('s_image'))
-                        {  //confused
-                            foreach($request->file('s_file') as $image)
-                            {
-                                $info = getimagesize($image);
 
-                                if ($info['mime'] == 'image/jpeg')
-                                    $image_n = imagecreatefromjpeg($image);
-
-                                elseif ($info['mime'] == 'image/gif')
-                                    $image_n = imagecreatefromgif($image);
-
-                                elseif ($info['mime'] == 'image/png')
-                                    $image_n = imagecreatefrompng($image);
-
-                                    $image_name=hexdec(uniqid());
-                                imagejpeg($image_n, "public/user Image/".$image_name.".jpeg",1000); //change the path of the image folder
-
-                                $p_image = $image_name.".jpeg";
 
                                 if($validatedData->fails())
                                 {
@@ -97,9 +96,6 @@ class RegistrationController extends Controller
                                }
 
                             // DB::table('stock_product_picture')->insert($stock_product_picture);
-                            }
-                        }
-
 
 
 

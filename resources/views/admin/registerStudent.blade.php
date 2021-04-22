@@ -52,7 +52,7 @@
                             <div class="card-body text-sm">
 
                                 <form action="{{ URL::to('register/student')}}"  method="post" enctype="multipart/form-data>
-                                    {{ csrf_field() }}
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                         <div class="form-group ">
@@ -157,7 +157,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="">Religion:<span style="color:red;">*</span></label>
-                                                    <select class="form-control" name="status" aria-label="Default select example">
+                                                    <select class="form-control" name="s_religion" aria-label="Default select example">
                                                         <option selected value="islam">Islam</option>
                                                         <option value="hindu">Hindu</option>
                                                         <option value="buddish">Buddish</option>
@@ -204,7 +204,7 @@
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                            <input type="file" class="image" name="s_image" value="Choose image file" >
+                                            <input type="file" class="s_image" name="s_image"  >
                                             </div>
                                         </div>
 
@@ -217,7 +217,7 @@
                                 </form>
                             </div>
 
-                        </div>
+                        {{-- </div>
                         <div id="add_teacher" class="tab-pane fade">
 
                             <div class="card-header bg-info shadow-lg text-light">
@@ -390,7 +390,7 @@
                             </div>
                         </div>
                     </div>
-                </div>  <!-- Card Body -->
+                </div>  <!-- Card Body --> --}}
             </div>
         </div>
     </section>
