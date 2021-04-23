@@ -100,4 +100,31 @@ class RegistrationController extends Controller
 
 
    }
+
+
+   public function addTeacher(Request $request)
+   {
+    $validatedData=Validator::make($request->all(),[
+        't_name' => 'required|max:100',
+        't_email' => 'required|email|unique:students,s_email|max:60',
+        't_address' => 'required|max:255',
+        't_status' => 'required',
+        't_national_id' => 'required|max:255',
+        't_gender' => 'required',
+        't_dob' => 'required',
+        't_religion' => 'required',
+        't_phone'=>'max:20',
+
+],
+
+[
+    'required' => 'This field can not be blank.',
+    's_email.unique' => 'This email has been used',
+    'max' => 'Enter less than max value.',
+    's_email.email'=>'Enter a valid email address',
+   //'mimes'=>'File type does not match',
+    //'s_image.max'=>'File size is too much bigger',
+
+]);
+   }
 }

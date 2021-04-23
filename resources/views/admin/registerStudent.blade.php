@@ -228,7 +228,7 @@
 
                             <div class="card-body text-sm">
 
-                                <form action="#" method="post">
+                                <form action="{{ URL::to('register/teacher')}}" method="post"  enctype="multipart/form-data" >
                                 @csrf
 
                                     <div class="row">
@@ -252,60 +252,25 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Address :<span style="color:red;">*</span></label>
-                                                <textarea class="form-control" name="address" ></textarea>
+                                                <textarea class="form-control" name="t_address" ></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Birth Certificate No:<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_birth_certificate_no" placeholder="Enter Birth Certificate No" value="" id="">
+                                                <label for="">National ID No No:<span style="color:red;">*</span></label>
+                                                <input type="text" class="form-control" name="t_national_id" placeholder="Enter National id  No" value="" id="">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for=""> Mother's Name:<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_mother" placeholder="Mother Name" value="" id="">
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="">Father's Name :<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_father" placeholder="Father Name" value="" id="">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="">Class :<span style="color:red;">*</span></label>
-                                                <select class="form-control" name="s_class" aria-label="Default select example">
-                                                    <option selected value="0">Nursery</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                    <option value="4">Four</option>
-                                                    <option value="5">Five</option>
-                                                    <option value="6">Six</option>
-                                                    <option value="7">Seven</option>
-                                                    <option value="8">Eight</option>
-                                                    <option value="9">Nine</option>
-                                                    <option value="10">Ten</option>
-                                                    <option value="11">11 th</option>
-                                                    <option value="12">12 th</option>
-                                                </select>
-                                            </div>
-                                        </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="">Gender :<span style="color:red;">*</span></label>
-                                                <select class="form-control" name="s_gender" aria-label="Default select example">
+                                                <select class="form-control" name="t_gender" aria-label="Default select example">
                                                     <option selected value="male">Male</option>
                                                     <option value="female">Female</option>
                                                     <option value="others">Others</option>
@@ -316,10 +281,17 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="">Status :<span style="color:red;">*</span></label>
-                                                <select class="form-control" name="s_status" aria-label="Default select example">
+                                                <select class="form-control" name="t_status" aria-label="Default select example">
                                                     <option selected value="1">Active</option>
                                                     <option value="2">Inactive</option>
                                                 </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label for="">Date Of Birth:<span style="color:red;">*</span></label>
+                                            <input type="date" class="form-control" name="t_dob" placeholder="Select Date of Birth" value="" id="">
                                             </div>
                                         </div>
                                     </div>
@@ -327,15 +299,8 @@
                                     <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                <label for="">Date Of Birth:<span style="color:red;">*</span></label>
-                                                <input type="date" class="form-control" name="s_dob" placeholder="Select Date of Birth" value="" id="">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
                                                     <label for="">Religion:<span style="color:red;">*</span></label>
-                                                    <select class="form-control" name="status" aria-label="Default select example">
+                                                    <select class="form-control" name="t_religion " aria-label="Default select example">
                                                         <option selected value="islam">Islam</option>
                                                         <option value="hindu">Hindu</option>
                                                         <option value="buddish">Buddish</option>
@@ -347,45 +312,44 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                <label for="">Student Phone :<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_phone" placeholder="Student Phone No" value="" id="">
+                                                <label for="">Teachers's Phone No :<span style="color:red;">*</span></label>
+                                                <input type="text" class="form-control" name="t_phone" placeholder="Teacher's Phone No" value="" id="">
+                                            </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Password:<span style="color:red;">*</span></label>
+                                                    <input type="password" class="form-control" name="t_password" placeholder="Enetr a Password" value="" id="">
                                             </div>
                                             </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-4">
-                                        <div class="form-group">
-                                                <label for="">Gurdian Name:<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_gurdian" placeholder="Gurdian Name" value="" id="">
-                                        </div>
-                                        </div>
-
-
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                             <div class="form-group">
-                                                <label for="">Gurdian Phone No:<span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control" name="s_gurdian_phone" placeholder="Gurdian Phone No" value="" id="">
-                                        </div>
+                                                <label for="">Add a Profile Image:<span style="color:red;">*</span></label>
+                                            <input type="file" class="image" name="t_image" >
+                                            </div>
                                         </div>
 
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                             <div class="form-group">
-                                                <label for="">Password:<span style="color:red;">*</span></label>
-                                                <input type="password" class="form-control" name="s_password" placeholder="Enetr a Password" value="" id="">
+                                                <label for="">Add Additional Attachment:<span style="color:red;">*</span></label>
+                                            <input type="file" class="" name="t_file" >
+                                            </div>
                                         </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row">
-                                        <div class="col-md-6 mx-auto">
+                                        <div class="col-md-2 ">
                                             <div class="form-group">
                                             <input type="submit" class="btn btn-info btn-block" value="Confirm">
                                             </div>
                                         </div>
+
                                     </div>
+
+
+
                                 </form>
                             </div>
                         </div>
