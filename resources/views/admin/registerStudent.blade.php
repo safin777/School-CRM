@@ -51,7 +51,7 @@
 
                             <div class="card-body text-sm">
 
-                                <form action="{{ URL::to('register/student')}}"  method="post" enctype="multipart/form-data>
+                                <form action="{{ URL::to('register/student')}}"  method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
@@ -204,7 +204,7 @@
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                            <input type="file" class="s_image" name="s_image"  >
+                                            <input type="file" class="image" name="s_image" >
                                             </div>
                                         </div>
 
@@ -217,7 +217,7 @@
                                 </form>
                             </div>
 
-                        {{-- </div>
+                        </div>
                         <div id="add_teacher" class="tab-pane fade">
 
                             <div class="card-header bg-info shadow-lg text-light">
@@ -390,7 +390,7 @@
                             </div>
                         </div>
                     </div>
-                </div>  <!-- Card Body --> --}}
+                </div>  <!-- Card Body -->
             </div>
         </div>
     </section>

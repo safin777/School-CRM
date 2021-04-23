@@ -25,13 +25,13 @@ class RegistrationController extends Controller
                                 's_status' => 'required',
                                 's_father_name' => 'required|max:50',
                                 's_mother_name' => 'required|max:50',
-                                's_birth_certificate_no' => 'required|max:25',
+                                's_birth_certificate_no' => 'required|max:255',
                                 's_gender' => 'required',
                                 's_gurdian'=> 'required|max:30',
                                 's_gurdian_phone' => 'required|max:12',
                                 's_dob' => 'required',
                                 's_religion' => 'required',
-                                's_image' => 'mimes:jpeg,jpg,png,gif|required|max:50000',
+                                //'s_image' => 'required|max:1000',
                                 's_phone'=>'max:20'
                         ],
 
@@ -40,8 +40,8 @@ class RegistrationController extends Controller
                             's_email.unique' => 'This email has been used',
                             'max' => 'Enter less than max value.',
                             's_email.email'=>'Enter a valid email address',
-                            's_image.mimes'=>'File type does not match',
-                            's_image.max'=>'File size is too much bigger',
+                           //'mimes'=>'File type does not match',
+                            //'s_image.max'=>'File size is too much bigger',
 
                         ]);
 
@@ -60,7 +60,6 @@ class RegistrationController extends Controller
                             $data['s_gurdian_phone']=$request->s_gurdian_phone;
                             $data['s_dob']=$request->s_dob;
                             $data['s_religion']=$request->s_religion;
-                           // $data['s_image']=$request->p_image;
                             $data['timestamp']=date('Y-m-d H:i:s');
                             $data['s_phone']=$request->s_phone;
 
@@ -79,8 +78,8 @@ class RegistrationController extends Controller
 
 
                             $filename =  $request->file('s_image')->getClientOriginalName();
-                            $request->file('s_image')->move(public_path('public/user Image/'), $filename);
-                            $data['s-image']=$filename;
+                            $request->file('s_image')->move(public_path('../public/user Image/'), $filename);
+                            $data['s_image']=$filename;
 
 
 
@@ -91,8 +90,9 @@ class RegistrationController extends Controller
 
                                 else
                                {
-                                   DB::table('students')->insert($data);
-                                     return redirect('register.student.add');
+                                     $user="User added successfully";
+                                     DB::table('students')->insert($data);
+                                     return redirect('register.student.add')->withErrors($user);
                                }
 
                             // DB::table('stock_product_picture')->insert($stock_product_picture);
