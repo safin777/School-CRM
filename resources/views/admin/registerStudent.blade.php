@@ -300,7 +300,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="">Religion:<span style="color:red;">*</span></label>
-                                                    <select class="form-control" name="t_religion " aria-label="Default select example">
+                                                    <select class="form-control" name="t_religion" aria-label="Default select example">
                                                         <option selected value="islam">Islam</option>
                                                         <option value="hindu">Hindu</option>
                                                         <option value="buddish">Buddish</option>
@@ -337,7 +337,7 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label for="">Add Additional Attachment:<span style="color:red;">*</span></label>
-                                            <input type="file" class="" name="t_file" >
+                                            <input type="file" class="" name="t_file[]" multiple>
                                             </div>
                                         </div>
                                         <div class="col-md-2 ">
