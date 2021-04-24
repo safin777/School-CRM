@@ -28,9 +28,10 @@ Route::get('admin.dashboard','AdminController@viewAdminDashboard')->name('admin.
 Route::get('register.student.add','AdminController@registerView')->name('register.student.add');
 Route::post('register/student','RegistrationController@addStudent');
 Route::post('register/teacher','RegistrationController@addTeacher');
-
-
 //registration controller route
+Route::get('notice.add','NoticeController@noticeAddView')->name('notice.add');
+Route::post('notice/add','NoticeController@addNotice');
+
 
 
 //registration controller route end

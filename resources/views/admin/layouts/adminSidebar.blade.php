@@ -94,7 +94,7 @@
 							<a href="#"><i class="fa fa-user"></i> <span> Notices</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="{{ url('employee') }}">View All Notice</a></li>
-                                <li><a href="{{ url('employee') }}">Add Notice</a></li>
+                                <li><a href="{{ url('notice.add') }}">Add Notice</a></li>
 							</ul>
 						</li>
 

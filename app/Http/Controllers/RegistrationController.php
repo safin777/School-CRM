@@ -154,9 +154,9 @@ class RegistrationController extends Controller
                     $attachment=$request->file('t_file');
                     foreach($attachment as $file)
                     {
-                       $att=$file->getClientOriginalName();
+                       $att[]=$file->getClientOriginalName();
                        $file->move(public_path('../public/user File/'), $att);
-                       $data['t_file[]']=$att;
+                       $data['t_file']=$att;
                     }
                     //return response()->json($data);
 

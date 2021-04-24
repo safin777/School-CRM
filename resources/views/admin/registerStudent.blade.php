@@ -12,7 +12,7 @@
                                 <div class="col-sm-8">
                                                             <!--Error message generate here -->
                                     @if ($errors->any())
-                                        <div class="alert alert-danger">
+                                        <div class="alert alert-success">
                                             <ul>
                                                 @foreach ($errors->all() as $error)
                                                     <li>{{ $error }}</li>
