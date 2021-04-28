@@ -93,7 +93,11 @@
                         <li class="submenu">
 							<a href="#"><i class="fa fa-user"></i> <span> Notices</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
+<<<<<<< HEAD
 								<li><a href="{{ url('notice.all') }}">View All Notice</a></li>
+=======
+								<li><a href="{{ url('employee') }}">View All Notice</a></li>
+>>>>>>> 87d3313ea87eace1a9f4ffe728aea7ae221b79b5
                                 <li><a href="{{ url('notice.add') }}">Add Notice</a></li>
 							</ul>
 						</li>

@@ -31,8 +31,11 @@ Route::post('register/teacher','RegistrationController@addTeacher');
 //registration controller route
 Route::get('notice.add','NoticeController@noticeAddView')->name('notice.add');
 Route::post('notice/add','NoticeController@addNotice');
+<<<<<<< HEAD
 Route::get('notice.all','NoticeController@allNotice')->name('notice.all');
 
+=======
+>>>>>>> 87d3313ea87eace1a9f4ffe728aea7ae221b79b5
 
 
 
