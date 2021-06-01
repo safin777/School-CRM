@@ -345,11 +345,7 @@
                                             <input type="submit" class="btn btn-info btn-block" value="Confirm">
                                             </div>
                                         </div>
-
                                     </div>
-
-
-
                                 </form>
                             </div>
                         </div>

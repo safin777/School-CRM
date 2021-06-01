@@ -28,6 +28,16 @@ Route::get('admin.dashboard','AdminController@viewAdminDashboard')->name('admin.
 Route::get('register.student.add','AdminController@registerView')->name('register.student.add');
 Route::post('register/student','RegistrationController@addStudent');
 Route::post('register/teacher','RegistrationController@addTeacher');
+
+Route::get('view.student.list','AdminController@viewStudentList')->name('view.student.list');
+Route::get('view.teacher.list','AdminController@viewTeacherList')->name('view.teacher.list');
+
+Route::get('student/details/{sid}', 'AdminController@studentDetails');
+Route::get('teacher/details/{t_id}', 'AdminController@teacherDetails');
+
+
+
+
 //registration controller route
 Route::get('notice.add','NoticeController@noticeAddView')->name('notice.add');
 Route::post('notice/add','NoticeController@addNotice');
@@ -39,4 +49,5 @@ Route::get('notice.all','NoticeController@allNotice')->name('notice.all');
 
 Route::get('notice.search','SearchController@searchNotice')->name('notice.search');
 Route::get('notice/edit/{nid}', 'NoticeController@editNotice');
+Route::post('notice/edit/post/{nid}','NoticeController@editNoticePost');
 

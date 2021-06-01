@@ -85,8 +85,8 @@
                         <li class="submenu">
 							<a href="#"><i class="fa fa-user"></i> <span> User List </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="{{ url('employee') }}">Students List</a></li>
-                                <li><a href="{{ url('employee') }}">Teacher List</a></li>
+								<li><a href="{{ url('view.student.list') }}">Students List</a></li>
+                                <li><a href="{{ url('view.teacher.list') }}">Teacher List</a></li>
 							</ul>
 						</li>
 

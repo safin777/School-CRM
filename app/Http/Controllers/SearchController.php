@@ -16,7 +16,7 @@ class SearchController extends Controller
 
             if($notice)
             {
-                foreach ($unotice as $key => $notice) {
+                foreach ($notice as $key => $notice) {
                 $output.='<tr>'.
                 '<td>'.$notice->n_id.'</td>'.
                 '<td>'.$notice->n_title.'</td>'.

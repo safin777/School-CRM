@@ -8,7 +8,7 @@
         <div class="row mx-auto">
             <div class="col-sm-6">
               <h1 class="m-0 text-dark">
-                  edit Notices</h1>
+                  Edit Notices</h1>
             </div>
 
             <div class="col-sm-6 ">
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="card-body text-sm">
 
-                <form action="{{ URL::to('notice/edit/post')}}"  method="post" enctype="multipart/form-data">
+                <form action="{{ URL::to('notice/edit/post/'.$data->n_id)}}"  method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         @if ($errors->any())
@@ -35,14 +35,14 @@
                             </div>
                         @endif
                     </div>
-                         @foreach ($notice as $data )
+
 
 
                     <div class="row mx-auto">
                         <div class="col-sm-4">
                             <div class="form-group ">
                                 <label for="">Notice Title :<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" name="n_title" value="$data->n_title" id="">
+                                <input type="text" class="form-control" name="n_title" value="{{$data->n_title}}" id="">
                             </div>
                         </div>
 
@@ -73,16 +73,16 @@
                         <div class="col-sm-8">
                             <div class="form-group ">
                                 <label for=""> Notice Description :<span style="color:red;">*</span></label>
-                                <textarea class="form-control" name="n_description" value="{{$data->n_description}}"></textarea>
+                                <input class="form-control" name="n_description" value="{{$data->n_description}}">
                             </div>
                         </div>
                     </div>    {{--Row 2--}}
 
                     <div class="row">
                         <div class="col-md-4 ">
-                            <img src="{{asset('..public/user Image/'.$data->n_image)}}" class="rounded-circle" id="profile_image" alt="Avatar" width="150" height="150">
-                        <input type="file" name="n_image" id="profile-img" onchange="readURL(this);" class="py-4">
-                          <script>
+                            <img src="{{asset('../notice Image/'.$data->n_image)}}"  class="img-thumbnail" id="profile_image" alt="Avatar" width="450" height="300">
+                            <input type="file" name="n_image" id="profile_img" onchange="readURL(this);" value="{{$data->n_image}}" class="py-4">
+                         <script>
                              function readURL(input) {
                                 if (input.files && input.files[0]) {
                                     var reader = new FileReader();
@@ -100,7 +100,7 @@
 
                         </script>
                         </div>
-                  @endforeach
+
                         <div class="col-md-4">
                             <div class="form-group">
                             <input type="submit" class="btn btn-success btn-block hover" value="Confirm" >
