@@ -24,7 +24,7 @@
 
                 <div class="col-lg-8">
                     <div class="card" style="background-color: #e1e5ea">
-                        <form action="#"  method="post" enctype="multipart/form-data">
+                        <form action=""  method="post" enctype="multipart/form-data">
 
                             {{-- row1 --}}
 
