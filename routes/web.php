@@ -53,3 +53,13 @@ Route::get('notice.search','SearchController@searchNotice')->name('notice.search
 Route::get('notice/edit/{nid}', 'NoticeController@editNotice');
 Route::post('notice/edit/post/{nid}','NoticeController@editNoticePost');
 
+//pdf controller
+
+Route::get('studentlist.pdf','PdfController@studentListPdf');
+Route::get('students.pdf','PdfController@allStudentPdf');
+
+//payment/fees/transaction controller
+
+Route::get('add.student.fees','TransactionController@addFeesView')->name('add.student.fees');
+
+

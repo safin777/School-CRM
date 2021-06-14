@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Validator;
+use Redirect;
 
 class AdminController extends Controller
 {
@@ -55,7 +57,7 @@ class AdminController extends Controller
     {
         $validatedData=Validator::make($request->all(),[
             's_name' => 'required|max:100',
-            's_email' => 'required|email|unique:students,s_email|max:60',
+            's_email' => 'required|email|max:60',
             's_address' => 'required|max:255',
             's_class' => 'required',
             's_status' => 'required',
@@ -73,7 +75,6 @@ class AdminController extends Controller
 
     [
         'required' => 'This field can not be blank.',
-        's_email.unique' => 'This email has been used',
         'max' => 'Enter less than max value.',
         's_email.email'=>'Enter a valid email address',
        //'mimes'=>'File type does not match',
@@ -109,11 +110,15 @@ class AdminController extends Controller
 
             else
            {
+               $s_details=DB::table('students')
+               ->where('sid',$sid)
+               ->first();
+
                  $user="Student's details updated  successfully";
                  DB::table('students')
                  ->where('sid',$sid)
                  ->update($data);
-                 return redirect('student/details/$sid')->withErrors($user);
+                 return view('admin.viewStudentDetails',['s_details'=>$s_details])->withErrors($user);
            }
 
     }

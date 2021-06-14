@@ -101,15 +101,13 @@
                         <li class="submenu">
 							<a href="#"><i class="fa fa-user"></i> <span>Money Transaction</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="{{ url('employee') }}">All Transanction List</a></li>
-                                <li><a href="{{ url('employee') }}">Teachers Payroll</a></li>
-                                <li><a href="{{ url('employee') }}">Add Payroll</a></li>
+								<li><a href="{{ url('add.student.fees') }}">Add Fees</a></li>
                                 <li><a href="{{ url('employee') }}">Students Fees List</a></li>
 							</ul>
 						</li>
 
 
-						<li class="submenu">
+						{{-- <li class="submenu">
 							<a href="#"><i class="fa fa-user"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="{{ url('employee') }}">Transaction Report</a></li>
@@ -118,7 +116,7 @@
 
 
 							</ul>
-						</li>
+						</li> --}}
 
 						{{-- <li class="submenu">
 							<a href="#"><i class="fa fa-book"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>

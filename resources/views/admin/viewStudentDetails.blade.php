@@ -23,9 +23,21 @@
 
 
                 <div class="col-lg-8">
-                    <div class="card" style="background-color: #e1e5ea">
-                        <form action=""  method="post" enctype="multipart/form-data">
 
+                    <div class="row">
+                        @if ($errors->any())
+                            <div class="alert alert-success">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="card" style="background-color: #e1e5ea">
+                        <form action="{{URL::to('student/details/edit/post/'.$s_details->sid)}}"  method="post" enctype="multipart/form-data">
+                            @csrf
                             {{-- row1 --}}
 
                             <div class="row mx-auto">
@@ -173,22 +185,22 @@
                                             <label for="">Religion :<span style="color:red;">*</span></label>
                                             <select class="form-control" name="s_religion" aria-label="Default select example" >
                                                 @if ($s_details->s_religion=="islam")
-                                                <option selected value="muslim">Muslim</option>
+                                                <option selected value="islam">Muslim</option>
                                                 <option value="hindu">Hindu</option>
                                                 <option value="buddish">Busddish</option>
                                                 <option value="cristian">Cristian</option>
                                                 @elseif ($s_details->s_religion=="hindu")
-                                                <option  value="muslim">Muslim</option>
+                                                <option  value="islam">Muslim</option>
                                                 <option selected value="hindu">Hindu</option>
                                                 <option value="buddish">Busddish</option>
                                                 <option value="cristian">Cristian</option>
                                                 @elseif($s_details->s_religion=="buddish")
-                                                <option  value="muslim">Muslim</option>
+                                                <option  value="islam">Muslim</option>
                                                 <option value="hindu">Hindu</option>
                                                 <option  selected value="buddish">Busddish</option>
                                                 <option value="cristian">Cristian</option>
                                                 @else
-                                                <option value="muslim">Muslim</option>
+                                                <option value="islam">Muslim</option>
                                                 <option value="hindu">Hindu</option>
                                                 <option value="buddish">Busddish</option>
                                                 <option selected value="cristian">Cristian</option>
@@ -199,7 +211,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group ">
                                         <label for="">Student's Password:<span style="color:red;">*</span></label>
-                                        <input type="password" class="form-control" name="s_passowrd" value="{{$s_details->s_password}}" id="myInput">
+                                        <input type="password" class="form-control" name="s_password" value="{{$s_details->s_password}}" id="myInput">
                                         <input type="checkbox" onclick="show_password()">Show Password
 
                                     </div>
