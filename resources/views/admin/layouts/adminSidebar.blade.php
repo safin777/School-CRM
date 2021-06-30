@@ -99,10 +99,16 @@
 						</li>
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span>Money Transaction</span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-user"></i> <span>Fees & Account </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="{{ url('add.student.fees') }}">Add Fees</a></li>
-                                <li><a href="{{ url('employee') }}">Students Fees List</a></li>
+                                <li><a href="{{ url('add.registration.fees') }}">Registration Fee</a></li>
+								<li><a href="{{ url('add.monthly.fees') }}">Monthly Fee</a></li>
+                                <li><a href="{{ url('add.student.fees') }}">Examination Fee</a></li>
+
+
+
+
+
 							</ul>
 						</li>
 

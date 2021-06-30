@@ -60,6 +60,8 @@ Route::get('students.pdf','PdfController@allStudentPdf');
 
 //payment/fees/transaction controller
 
-Route::get('add.student.fees','TransactionController@addFeesView')->name('add.student.fees');
+Route::get('add.registration.fees','TransactionController@addRegistrationFeesView')->name('add.registration.fees');
+Route::get('add.monthly.fees','TransactionController@addMonthlyFeesView')->name('add.monthly.fees');
+
 
 

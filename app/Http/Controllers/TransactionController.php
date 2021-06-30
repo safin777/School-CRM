@@ -14,8 +14,15 @@ use Illuminate\Support\Facades\File;
 
 class TransactionController extends Controller
 {
-    public function addFeesView()
+    public function addRegistrationFeesView()
     {
-        return view('admin.addFees');
+        return view('admin.addRegistrationFees');
     }
+
+    public function addMonthlyFeesView()
+    {
+        return view('admin.addMonthlyFees');
+    }
+
+
 }
