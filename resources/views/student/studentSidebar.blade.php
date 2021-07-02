@@ -47,12 +47,10 @@
 							<img class="rounded-circle" src="/assets/img/user.jpg" width="24" alt="Admin">
 							<span class="status online"></span>
 						</span>
-						<span>Admin</span>
+						<span>Student</span>
                     </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="/home/profile">My Profile</a>
-						<a class="dropdown-item" href="/home/edit-profile">Edit Profile</a>
-
 						<a class="dropdown-item" href="/logout">Logout</a>
 					</div>
                 </li>
@@ -79,80 +77,30 @@
                         </li>
 
                         <li>
-                            <a href="{{ url('register.student.add') }}"><i class="fa fa-user-md"></i> <span>Register User</span></a>
+                            <a href="{{ url('register.student.add') }}"><i class="fa fa-user-md"></i> <span>Notice</span></a>
                         </li>
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> User List </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-user"></i> <span> Result </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="{{ url('view.student.list') }}">Students List</a></li>
-                                <li><a href="{{ url('view.teacher.list') }}">Teacher List</a></li>
+								<li><a href="{{ url('view.student.list') }}">Class Test Result</a></li>
+                                <li><a href="{{ url('view.student.list') }}"> Term Exam Result</a></li>
 							</ul>
 						</li>
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Notices</span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-user"></i> <span> Assignment</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="{{ url('notice.all') }}">View All Notice</a></li>
-                                <li><a href="{{ url('notice.add') }}">Add Notice</a></li>
+								<li><a href="{{ url('notice.all') }}">Upload Assignment</a></li>
+                                <li><a href="{{ url('notice.add') }}">Download Assignment</a></li>
 							</ul>
 						</li>
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span>Fees & Account </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-user"></i> <span>Download Application </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-                                <li><a href="{{ url('add.registration.fees') }}">Registration Fee</a></li>
-								<li><a href="{{ url('add.monthly.fees') }}">Monthly Fee</a></li>
-                                <li><a href="{{ url('add.examination.fees') }}">Examination Fee</a></li>
-
-
-
-
-
 							</ul>
 						</li>
-
-
-						{{-- <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="{{ url('employee') }}">Transaction Report</a></li>
-                                <li><a href="{{ url('employee') }}">Student Report</a></li>
-                                <li><a href="{{ url('employee') }}">Teacher Report</a></li>
-
-
-							</ul>
-						</li> --}}
-
-						{{-- <li class="submenu">
-							<a href="#"><i class="fa fa-book"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="/receipt"> Employee Salary </a></li>
-
-							</ul>
-						</li>
-                        --}}
-{{--
-                        <li class="submenu">
-                            <a href="#"><i class="fa fa-envelope"></i> <span> Email</span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="/compose">Compose Mail</a></li>
-                                <li><a href="/inbox">Inbox</a></li>
-
-                            </ul>
-                        </li> --}}
-
-						{{-- <li>
-							<a href="/store"><i class="fa fa-cube"></i> <span>Medicine Store</span></a>
-						</li>
-						 --}}
-
-
-
-
-
-
-
 
                     </ul>
                 </div>

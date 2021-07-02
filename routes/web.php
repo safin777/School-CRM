@@ -62,6 +62,15 @@ Route::get('students.pdf','PdfController@allStudentPdf');
 
 Route::get('add.registration.fees','TransactionController@addRegistrationFeesView')->name('add.registration.fees');
 Route::get('add.monthly.fees','TransactionController@addMonthlyFeesView')->name('add.monthly.fees');
+Route::get('add.examination.fees','TransactionController@addExaminationFeesView')->name('add.examination.fees');
+
+
+
+
+// Student end route
+//student dashboard
+Route::get('student.dashboard','StudentController@viewDashboard')->name('student.dashboard');
+
 
 
 

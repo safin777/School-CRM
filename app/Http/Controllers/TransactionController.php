@@ -24,5 +24,10 @@ class TransactionController extends Controller
         return view('admin.addMonthlyFees');
     }
 
+    public function addExaminationFeesView()
+    {
+        return view('admin.addExaminationFees');
+    }
+    
 
 }
