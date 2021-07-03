@@ -70,6 +70,7 @@ Route::get('add.examination.fees','TransactionController@addExaminationFeesView'
 // Student end route
 //student dashboard
 Route::get('student.dashboard','StudentController@viewDashboard')->name('student.dashboard');
+Route::get('student.notice','StudentController@allNotice')->name('student.notice');
 
 
 

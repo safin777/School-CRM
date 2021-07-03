@@ -77,7 +77,7 @@
                         </li>
 
                         <li>
-                            <a href="{{ url('register.student.add') }}"><i class="fa fa-user-md"></i> <span>Notice</span></a>
+                            <a href="{{ url('student.notice') }}"><i class="fa fa-user-md"></i> <span>Notice</span></a>
                         </li>
 
                         <li class="submenu">

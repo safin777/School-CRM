@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Validator;
+use DB;
 
 class StudentController extends Controller
 {
@@ -14,6 +17,7 @@ class StudentController extends Controller
     public function allNotice()
     {
         $all_notice=DB::table('notices')->get();
-        return view('student.viewAllNotice',['all_notice'=>$all_notice]);
+        return view('student.studentNotice',['all_notice'=>$all_notice]);
     }
+
 }
