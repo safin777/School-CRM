@@ -68,10 +68,28 @@ Route::get('add.examination.fees','TransactionController@addExaminationFeesView'
 
 
 // Student end route
-//student dashboard
-Route::get('student.dashboard','StudentController@viewDashboard')->name('student.dashboard');
-Route::get('student.notice','StudentController@allNotice')->name('student.notice');
 
+//student login
+Route::get('student.login','StudentController@viewlogin')->name('student.login');
+Route::post('post/student/login','StudentController@verifyLogin');
+
+
+//student dashboard
+
+//result Section
+//Route::get('view/student/classTestResult/{s_id}','StudentController@viewClassTestResult');
+
+Route::group(['middleware'=>['CustomAuth']],function(){
+    Route::get('student.dashboard','StudentController@viewDashboard')->name('student.dashboard');
+    Route::get('student.notice','StudentController@allNotice')->name('student.notice');
+    Route::get('view.student.classTestResult','StudentController@viewClassTestResult')->name('view.student.classTestResult');
+    
+});
+
+
+// Logout Controller
+
+Route::get('student.logout','StudentController@studentLogOut')->name('student.logout');
 
 
 

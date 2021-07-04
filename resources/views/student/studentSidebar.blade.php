@@ -51,7 +51,7 @@
                     </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="/home/profile">My Profile</a>
-						<a class="dropdown-item" href="/logout">Logout</a>
+						<a class="dropdown-item" href="student.logout">Logout</a>
 					</div>
                 </li>
             </ul>
@@ -62,7 +62,7 @@
                     <a class="dropdown-item" href="/home/profile">My Profile</a>
                     <a class="dropdown-item" href="/home/edit-profile">Edit Profile</a>
 
-                    <a class="dropdown-item" href="/logout">Logout</a>
+                    <a class="dropdown-item" href="student.logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -73,17 +73,19 @@
                     <ul>
                         <li class="menu-title">Main</li>
                         <li class="active">
-                            <a href="{{ url('admin.dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                            <a href="{{ url('student.dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
 
                         <li>
                             <a href="{{ url('student.notice') }}"><i class="fa fa-user-md"></i> <span>Notice</span></a>
                         </li>
 
+                        
+
                         <li class="submenu">
 							<a href="#"><i class="fa fa-user"></i> <span> Result </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="{{ url('view.student.list') }}">Class Test Result</a></li>
+								<li><a href="{{ url('view.student.classTestResult') }}">Class Test Result</a></li>
                                 <li><a href="{{ url('view.student.list') }}"> Term Exam Result</a></li>
 							</ul>
 						</li>
