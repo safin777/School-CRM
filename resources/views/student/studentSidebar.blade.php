@@ -18,6 +18,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  </head>
     <!--[if lt IE 9]>
@@ -80,13 +81,13 @@
                             <a href="{{ url('student.notice') }}"><i class="fa fa-user-md"></i> <span>Notice</span></a>
                         </li>
 
-                        
+
 
                         <li class="submenu">
 							<a href="#"><i class="fa fa-user"></i> <span> Result </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="{{ url('view.student.classTestResult') }}">Class Test Result</a></li>
-                                <li><a href="{{ url('view.student.list') }}"> Term Exam Result</a></li>
+                                <li><a href="{{ url('view.student.termResult') }}"> Term Exam Result</a></li>
 							</ul>
 						</li>
 

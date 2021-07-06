@@ -9,7 +9,7 @@ use DB;
 
 class StudentController extends Controller
 {
-    public function viewLogin(){
+    public function viewLogin(){                //view Login page
         return view('student.studentLogin');
     }
 
@@ -81,7 +81,7 @@ class StudentController extends Controller
     }
 
                                             //   class test result
-   public function viewClassTestResult(Request $req){
+   public function viewClassTestResult(){
 
     $sid=session()->get('sid');
 
@@ -89,15 +89,60 @@ class StudentController extends Controller
     ->where('sid',$sid)
     ->first();
 
-   $userClass=$user_info->s_class;
+    $test_result = DB::table('results')
+    ->join('subject_list','subject_list.subject_id','=','results.subject_id')
+    ->join('teachers','teachers.t_id','=','results.t_id')
+    ->select('results.*','subject_list.subject_name','subject_list.subject_code','teachers.t_name')
+    ->where('results.slug','=',"test")
+    ->where('results.sid','=',$sid)
+    ->get();
 
-   $test_result=DB::table('results')
-   ->
+   if($test_result==null){
+      echo("No data Found....");
 
+   }else{
 
-
-
+    return view('student.studentClassTestResult',['user_info'=>$user_info,'test_result'=>$test_result]);
 
    }
+
+//  return response()->json($test_result);
+
+ }
+
+
+                                         //  TERM EXAM RESULT
+
+ public function viewTermResult(){
+
+    $sid=session()->get('sid');
+
+    $user_info=DB::table('students')
+    ->where('sid',$sid)
+    ->first();
+
+                                      // QUERY
+   $test_result = DB::table('results')
+                ->join('subject_list','subject_list.subject_id','=','results.subject_id')
+                ->join('teachers','teachers.t_id','=','results.t_id')
+                ->select('results.*','subject_list.subject_name','subject_list.subject_code','teachers.t_name')
+                ->where('results.slug','=',"term")
+                ->where('results.sid','=',$sid)
+                ->get();
+
+   if($test_result==null){
+      echo("No data Found....");
+
+   }else{
+
+    return view('student.studentTermResult',['user_info'=>$user_info,'test_result'=>$test_result]);
+
+   }
+
+//  return response()->json($test_result);
+
+ }
+
+
 
 }

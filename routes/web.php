@@ -83,7 +83,9 @@ Route::group(['middleware'=>['CustomAuth']],function(){
     Route::get('student.dashboard','StudentController@viewDashboard')->name('student.dashboard');
     Route::get('student.notice','StudentController@allNotice')->name('student.notice');
     Route::get('view.student.classTestResult','StudentController@viewClassTestResult')->name('view.student.classTestResult');
-    
+    Route::get('view.student.termResult','StudentController@viewTermResult')->name('view.student.termResult');
+
+
 });
 
 
