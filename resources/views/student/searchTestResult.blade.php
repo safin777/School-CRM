@@ -50,7 +50,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for=""> Select Test Exam :<span style="color:red;">*</span></label>
-                                <select class="form-control" name="exam_type" aria-label="Default select example" >
+                                <select class="form-control" name="exam_type_id" aria-label="Default select example" >
                                     <option selected value="0">-- Select Exam --</option>
                                     @foreach ($test_list as $data )
                                     <option value="{{$data->exam_type_id}}">{{$data->exam_type_name}}</option>

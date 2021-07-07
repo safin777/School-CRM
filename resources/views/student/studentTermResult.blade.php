@@ -44,13 +44,13 @@
         ?>
         <div class="row">
             <div class="card-body text-sm">
-                <form action="{{ URL::to('notice/add')}}"  method="post" enctype="multipart/form-data">
+                <form action="{{ URL::to('search/term/result')}}"  method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row mx-auto">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for=""> Select Test Exam :<span style="color:red;">*</span></label>
-                                <select class="form-control" name="exam_type" aria-label="Default select example" >
+                                <label for=""> Select Term Exam :<span style="color:red;">*</span></label>
+                                <select class="form-control" name="exam_type_id" aria-label="Default select example" >
                                     <option selected value="0">-- Select Exam --</option>
                                     @foreach ($test_list as $data )
                                     <option value="{{$data->exam_type_id}}">{{$data->exam_type_name}}</option>

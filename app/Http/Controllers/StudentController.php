@@ -143,6 +143,68 @@ class StudentController extends Controller
 
  }
 
+ public function searchTest(Request $req){
+        $exam_type_id=$req->exam_type_id;
+        $sid=session()->get('sid');
+
+        $user_info=DB::table('students')
+        ->where('sid',$sid)
+        ->first();
+
+                                          // QUERY
+       $test_result = DB::table('results')
+                    ->join('subject_list','subject_list.subject_id','=','results.subject_id')
+                    ->join('teachers','teachers.t_id','=','results.t_id')
+                    ->select('results.*','subject_list.subject_name','subject_list.subject_code','teachers.t_name')
+                    ->where('results.exam_type_id',$exam_type_id)
+                    ->where('results.sid','=',$sid)
+                    ->get();
+
+       if($test_result==null){
+          echo("No data Found....");
+
+       }else{
+
+        return view('student.searchTestResult',['user_info'=>$user_info,'test_result'=>$test_result]);
+
+       }
+
+
+
+ }
+
+
+
+ public function searchTerm(Request $req){
+    $exam_type_id=$req->exam_type_id;
+    $sid=session()->get('sid');
+
+    $user_info=DB::table('students')
+    ->where('sid',$sid)
+    ->first();
+
+                                      // QUERY
+   $test_result = DB::table('results')
+                ->join('subject_list','subject_list.subject_id','=','results.subject_id')
+                ->join('teachers','teachers.t_id','=','results.t_id')
+                ->select('results.*','subject_list.subject_name','subject_list.subject_code','teachers.t_name')
+                ->where('results.exam_type_id',$exam_type_id)
+                ->where('results.sid','=',$sid)
+                ->get();
+
+   if($test_result==null){
+      echo("No data Found....");
+
+   }else{
+
+    return view('student.searchTermResult',['user_info'=>$user_info,'test_result'=>$test_result]);
+
+   }
+
+
+
+}
+
 
 
 }

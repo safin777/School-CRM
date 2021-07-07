@@ -2,24 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-// main index blog page routes
+
 
 Route::get('/','IndexController@viewIndex');
 
 
 // main index blog page routes
-
-
 //admin routes
 Route::get('admin.login','AdminLoginController@viewLogin')->name('admin.login');
 Route::get('admin.dashboard','AdminController@viewAdminDashboard')->name('admin.dashboard');
@@ -36,8 +24,6 @@ Route::get('student/details/{sid}', 'AdminController@studentDetails');
 Route::post('student/details/edit/post/{sid}','AdminController@editStudentDetails');
 
 Route::get('teacher/details/{t_id}', 'AdminController@teacherDetails');
-
-
 
 
 //registration controller route
@@ -84,6 +70,12 @@ Route::group(['middleware'=>['CustomAuth']],function(){
     Route::get('student.notice','StudentController@allNotice')->name('student.notice');
     Route::get('view.student.classTestResult','StudentController@viewClassTestResult')->name('view.student.classTestResult');
     Route::get('view.student.termResult','StudentController@viewTermResult')->name('view.student.termResult');
+
+    //SEARCH TEST AND TERM RESULT
+
+    Route::post('search/test/result','StudentController@searchTest');
+    Route::post('search/term/result','StudentController@searchTerm');
+
 
 
 });
