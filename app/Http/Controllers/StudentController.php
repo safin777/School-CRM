@@ -169,9 +169,12 @@ class StudentController extends Controller
 
        }
 
-
-
  }
+
+
+   public function viewUploadAssignment(){
+       return view('student.uploadAssignment');
+   }
 
 
 
@@ -201,10 +204,45 @@ class StudentController extends Controller
 
    }
 
-
-
 }
+   public function uploadAssignment(Request $req)
+   {
+
+        $req->validate([
+        'file' => 'required|mimes:csv,txt,xlx,xls,pdf,zip,rar,doc|max:2048',
+        'subject_id'=>'required',
+        't_id' =>'required'
+        ]);
+
+        $sid=session()->get('sid');
+        $subject_id=$req->subject_id;
+        $t_id=$req->t_id;
+
+        $user_info=DB::table('students')
+        ->select()
+        ->where('sid',$sid)
+        ->first();
+
+        $data=array();
+        $data['sid']=$sid;
+        $data['subject_id']=$subject_id;
+        $data['t_id']=$t_id;
+        $data['s_class'] = $user_info->s_class;
+        $data['timestamp']=date('Y-m-d H:i:s');
+
+        if($req->file()){
+             $filename =  $req->file('file')->getClientOriginalName();
+             $req->file('file')->move(public_path('../public/S Assignment/'), $filename);
+             $data['asign_file_path'] = $filename;
 
 
+            DB::table('up_assignment')->insert($data);
+
+            return back()
+            ->with('success','File has been uploaded.');
+
+        }
+
+   }
 
 }

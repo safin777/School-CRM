@@ -76,6 +76,11 @@ Route::group(['middleware'=>['CustomAuth']],function(){
     Route::post('search/test/result','StudentController@searchTest');
     Route::post('search/term/result','StudentController@searchTerm');
 
+    //
+    Route::get('student.upload.assignment','StudentController@viewUploadAssignment')->name('student.upload.assignment');
+    Route::post('student/upload/assignment','StudentController@uploadAssignment');
+
+
 
 
 });
