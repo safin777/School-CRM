@@ -47,6 +47,12 @@ class Kernel extends HttpKernel
 
             \App\Http\Middleware\CustomAuth::class,
         ],
+
+
+        'TeacherAuth' => [
+            \App\Http\Middleware\TeacherAuth::class,
+        ],
+        
     ];
 
     /**

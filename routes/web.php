@@ -80,8 +80,13 @@ Route::group(['middleware'=>['CustomAuth']],function(){
     Route::get('student.upload.assignment','StudentController@viewUploadAssignment')->name('student.upload.assignment');
     Route::post('student/upload/assignment','StudentController@uploadAssignment');
 
+});
 
 
+// TEACHER CONTROLLER
+Route::group(['middleware'=>['TeacherAuth']],function(){
+Route::get('teacher.login.view','TeacherController@viewLogin')->name('teacher.login.view');
+Route::post('post/teacher/login','TeacherController@verifyLogin');
 
 });
 
