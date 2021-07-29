@@ -86,7 +86,7 @@
                         <li class="submenu">
 							<a href="#"><i class="fa fa-user"></i> <span> Result </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="{{ url('view.student.classTestResult') }}">Upload Result</a></li>
+								<li><a href="{{ url('view.uploadResult') }}">Upload Result</a></li>
                                 <li><a href="{{ url('view.student.termResult') }}"> Search Result</a></li>
 							</ul>
 						</li>

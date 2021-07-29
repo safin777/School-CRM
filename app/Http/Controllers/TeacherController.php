@@ -95,7 +95,7 @@ class TeacherController extends Controller
 
     ]);
 
-    $data =array();
+          $data =array();
 
 
         $filename =  $request->file('n_image')->getClientOriginalName();
@@ -242,12 +242,57 @@ class TeacherController extends Controller
 
         }
 
+    }
 
-
+    public function viewUploadResult(){
+        return view('teacher.uploadResult');
 
     }
 
+    public function postUploadResult(Request $request){
 
+        $t_id=session()->get('t_id');
+
+
+        $validatedData=Validator::make($request->all(),[
+
+            'exam_type_id' => 'required',
+            'subject_id' => 'required',
+            'sid' => 'required',
+            'slug' => 'required',
+            'marks' => 'required|max:10',
+    ],
+
+    [
+        'required' => 'This field can not be blank.',
+        'max' => 'Enter less than max value.'
+    ]);
+
+
+    $data =array();
+    $data['exam_type_id']=$request->exam_type_id;
+    $data['subject_id']=$request->subject_id;
+    $data['sid']=$request->sid;
+    $data['slug']=$request->slug;
+    $data['marks']=$request->marks;
+    $data['t_id']=$t_id;
+    $data['timestamp']=date('Y-m-d H:i:s');
+
+    if($validatedData->fails())
+    {
+       return Redirect::back()->withErrors($validatedData);
+    }
+
+    else
+   {
+         $Result="Result Uploaded successfully";
+         DB::table('results')
+         ->insert($data);
+         return redirect('view.uploadResult')->withErrors($Result);
+   }
+
+
+    }
 
 
 

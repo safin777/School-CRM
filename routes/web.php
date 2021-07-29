@@ -92,13 +92,16 @@ Route::post('post/teacher/login','TeacherController@verifyLogin');
 Route::group(['middleware'=>['TeacherAuth']],function(){
 Route::get('teacher.teacherDashboard','TeacherController@viewDashboard')->name('teacher.teacherDashboard');
 
-//NOTICE SECTION OF TEACHER 
+//NOTICE SECTION OF TEACHER
 
 Route::get('teacher.view.uploadNotice','TeacherController@viewUploadNotice')->name('teacher.view.uploadNotice');
 Route::post('teacher/notice/add','TeacherController@uploadNotice');
 Route::get('teacher.view.allNotice','TeacherController@viewAllNotice')->name('teacher.view.allNotice');
 Route::get('teacher/notice/edit/{nid}', 'TeacherController@editNotice');
 Route::post('teacher/notice/edit/post/{nid}','TeacherController@editNoticePost');
+
+Route::get('view.uploadResult','TeacherController@viewUploadResult')->name('view.uploadResult');
+Route::post('teacher/upload/result','TeacherController@postUploadResult');
 
 
 });
