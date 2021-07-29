@@ -6,13 +6,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','IndexController@viewIndex');
 
+Route::get('admin.login','AdminLoginController@viewLogin')->name('admin.login');
+Route::get('teacher.login.view','TeacherController@viewLogin')->name('teacher.login.view');
+Route::get('student.login','StudentController@viewlogin')->name('student.login');
 
 // main index blog page routes
 //admin routes
-Route::get('admin.login','AdminLoginController@viewLogin')->name('admin.login');
-Route::get('admin.dashboard','AdminController@viewAdminDashboard')->name('admin.dashboard');
 
-//admin routes end
+
+
+Route::get('admin.dashboard','AdminController@viewAdminDashboard')->name('admin.dashboard');
 Route::get('register.student.add','AdminController@registerView')->name('register.student.add');
 Route::post('register/student','RegistrationController@addStudent');
 Route::post('register/teacher','RegistrationController@addTeacher');
@@ -56,7 +59,7 @@ Route::get('add.examination.fees','TransactionController@addExaminationFeesView'
 // Student end route
 
 //student login
-Route::get('student.login','StudentController@viewlogin')->name('student.login');
+
 Route::post('post/student/login','StudentController@verifyLogin');
 
 
@@ -75,18 +78,28 @@ Route::group(['middleware'=>['CustomAuth']],function(){
 
     Route::post('search/test/result','StudentController@searchTest');
     Route::post('search/term/result','StudentController@searchTerm');
-
-    //
     Route::get('student.upload.assignment','StudentController@viewUploadAssignment')->name('student.upload.assignment');
     Route::post('student/upload/assignment','StudentController@uploadAssignment');
+
 
 });
 
 
 // TEACHER CONTROLLER
-Route::group(['middleware'=>['TeacherAuth']],function(){
-Route::get('teacher.login.view','TeacherController@viewLogin')->name('teacher.login.view');
+
 Route::post('post/teacher/login','TeacherController@verifyLogin');
+
+Route::group(['middleware'=>['TeacherAuth']],function(){
+Route::get('teacher.teacherDashboard','TeacherController@viewDashboard')->name('teacher.teacherDashboard');
+
+//NOTICE SECTION OF TEACHER 
+
+Route::get('teacher.view.uploadNotice','TeacherController@viewUploadNotice')->name('teacher.view.uploadNotice');
+Route::post('teacher/notice/add','TeacherController@uploadNotice');
+Route::get('teacher.view.allNotice','TeacherController@viewAllNotice')->name('teacher.view.allNotice');
+Route::get('teacher/notice/edit/{nid}', 'TeacherController@editNotice');
+Route::post('teacher/notice/edit/post/{nid}','TeacherController@editNoticePost');
+
 
 });
 

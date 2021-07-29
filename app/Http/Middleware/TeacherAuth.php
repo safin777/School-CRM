@@ -16,7 +16,7 @@ class TeacherAuth
     public function handle($request, Closure $next)
     {
         if(!session()->has('t_id')){
-            return redirect('teacher.teacherLogin');
+            return redirect('teacher.login.view');
         }
         return $next($request);
     }

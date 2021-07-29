@@ -78,8 +78,8 @@
                         <li class="submenu">
 							<a href="#"><i class="fa fa-user"></i> <span> Notices </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="{{ url('view.student.classTestResult') }}">Upload Notice</a></li>
-                                <li><a href="{{ url('view.student.termResult') }}">View All Notice</a></li>
+								<li><a href="{{ url('teacher.view.uploadNotice') }}">Upload Notice</a></li>
+                                <li><a href="{{ url('teacher.view.allNotice') }}">View All Notice</a></li>
 							</ul>
 						</li>
 

@@ -177,16 +177,12 @@ class NoticeController extends Controller
                      ->update($data);
                      return redirect('notice.all')->withErrors($Notice);
                }
-
-
         }
-
-
-
 
     }
 
 
+    
 
 
 }

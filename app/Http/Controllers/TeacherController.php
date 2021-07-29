@@ -20,14 +20,15 @@ class TeacherController extends Controller
             'password' => 'required|max:25|min:2',
         ]);
 
-        $email = $req ->email;
-        $password = $req ->password;
-        //DB::enableQueryLog();
+        $email = $req->email;
+        $password = $req->password;
+
+
         $user = DB::table('teachers')
                 ->where('t_email',$email)
                 ->where('t_password',$password)
                 ->first();
-               // dd(DB::getQueryLog());
+
         $status = $user->t_status;
         $t_id=$user->t_id;
 
@@ -56,4 +57,198 @@ class TeacherController extends Controller
              return Redirect()->back()->with($notification);
         }
     }
+
+
+    public function viewDashboard(){
+        return view('teacher.teacherDashboard');
+    }
+
+
+    public function viewUploadNotice (){
+        return view ('teacher.uploadNotice');
+    }
+
+
+    public function uploadNotice (Request $request){
+
+        $t_id=session()->get('t_id');
+
+
+        $validatedData=Validator::make($request->all(),[
+
+            'n_title' => 'required|max:100',
+            'n_type_id' => 'required',
+            'n_description' => 'required|max:1000',
+
+            'n_title' => 'required|max:100',
+            'n_type_id' => 'required',
+            'n_description' => 'required|max:1000',
+
+
+    ],
+
+    [
+        'required' => 'This field can not be blank.',
+        'max' => 'Enter less than max value.'
+
+
+
+    ]);
+
+    $data =array();
+
+
+        $filename =  $request->file('n_image')->getClientOriginalName();
+        $request->file('n_image')->move(public_path('../public/notice Image/'), $filename);
+
+        $data['n_image']=$filename;
+        $data['n_title']=$request->n_title;
+        $data['n_description']=$request->n_description;
+        $data['n_type_id']=$request->n_type_id;
+        $data['n_added_by']=$t_id;
+        $data['timestamp']=date('Y-m-d H:i:s');
+
+
+
+            if($validatedData->fails())
+            {
+               return Redirect::back()->withErrors($validatedData);
+            }
+
+            else
+           {
+                 $Notice="Notice added successfully";
+                 DB::table('notices')->insert($data);
+                 return redirect('teacher.view.uploadNotice')->withErrors($Notice);
+           }
+
+    }
+
+
+    public function viewAllNotice(){
+        $t_id=session()->get('t_id');
+
+        $all_notice=DB::table('notices')
+        ->where('n_added_by','=',$t_id)
+        ->get();
+        return view('teacher.viewAllNotice',['all_notice'=>$all_notice]);
+
+    }
+
+
+    public function editNotice($nid)
+    {
+        $nid = base64_decode($nid);
+
+        $data = DB::table('notices')
+                                ->where('n_id',$nid)
+                                ->first();
+                              //  return response()->json($data);
+        return view('teacher.editNotice',['data'=>$data]);
+
+    }
+
+
+
+    public function editNoticePost(Request $request ,$n_id)
+    {
+        $validatedData=Validator::make($request->all(),[
+
+            'n_title' => 'required|max:100',
+            'n_type_id' => 'required',
+            'n_description' => 'required|max:1000',
+
+            'n_title' => 'required|max:100',
+            'n_type_id' => 'required',
+            'n_description' => 'required|max:1000',
+
+
+    ],
+
+    [
+        'required' => 'This field can not be blank.',
+        'max' => 'Enter less than max value.'
+
+
+
+    ]);
+    $t_id=session()->get('t_id');
+    $data =array();
+
+    $emp=DB::table('notices')
+                ->select('n_image')
+                ->where('n_id',$n_id)
+                ->first();
+
+
+        if ($request->hasFile('n_image')){
+
+            $path = public_path('../public/notice Image/');
+            $old_image=$path.$emp->n_image;
+            unlink($old_image);
+
+            $filename =  $request->file('n_image')->getClientOriginalName();
+            $request->file('n_image')->move(public_path('../public/notice Image/'), $filename);
+
+            $data['n_image']=$filename;
+            $data['n_title']=$request->n_title;
+            $data['n_description']=$request->n_description;
+            $data['n_type_id']=$request->n_type_id;
+            $data['n_added_by']=$t_id;
+            $data['timestamp']=date('Y-m-d H:i:s');
+
+
+
+                if($validatedData->fails())
+                {
+                   return Redirect::back()->withErrors($validatedData);
+                }
+
+                else
+               {
+                     $Notice="Notice Updated  successfully";
+                     DB::table('notices')
+                     ->where('n_id',$n_id)
+                     ->update($data);
+                     return redirect('teacher.view.allNotice')->withErrors($Notice);
+               }
+        }
+
+        else{
+
+            $data['n_image']=$emp->n_image;
+            $data['n_title']=$request->n_title;
+            $data['n_description']=$request->n_description;
+            $data['n_type_id']=$request->n_type_id;
+            $data['n_added_by']=$t_id;
+            $data['timestamp']=date('Y-m-d H:i:s');
+
+
+
+                if($validatedData->fails())
+                {
+                   return Redirect::back()->withErrors($validatedData);
+                }
+
+                else
+               {
+                     $Notice="Notice Updated  successfully";
+                     DB::table('notices')
+                     ->where('n_id',$n_id)
+                     ->update($data);
+                     return redirect('teacher.view.allNotice')->withErrors($Notice);
+               }
+
+
+        }
+
+
+
+
+    }
+
+
+
+
+
 }
