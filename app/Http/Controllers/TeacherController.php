@@ -294,6 +294,67 @@ class TeacherController extends Controller
 
     }
 
+    public function viewSearchResult(){
+        return view('teacher.searchResult');
+    }
+
+
+    public function searchResult(Request $request){
+
+        $t_id=session()->get('t_id');
+
+
+        $validatedData=Validator::make($request->all(),[
+
+            // 'exam_type_id' => 'required',
+            // 'subject_id' => 'required',
+            'sid' => 'required',
+
+    ],
+
+    [
+        'required' => 'This field can not be blank.',
+
+    ]);
+
+
+
+    $sid=$request->sid;
+
+
+    if($validatedData->fails())
+    {
+       return Redirect::back()->withErrors($validatedData);
+    }
+
+    else
+   {
+
+    $results = DB::table('results')
+    ->join('subject_list','subject_list.subject_id','=','results.subject_id')
+    ->join('students','students.sid','=','results.sid')
+    ->join('exam_type','exam_type.exam_type_id','=','results.exam_type_id')
+    ->select('results.*','subject_list.subject_name','subject_list.subject_code','students.*','exam_type.*')
+    ->where('results.sid','=',$sid)
+    ->get();
+
+    return view('teacher.showSearchResult',['results'=>$results]);
+
+    }
+   }
+
+   public function viewEditResult($rid)
+   {
+       $rid = base64_decode($rid);
+
+       $data = DB::table('results')
+                               ->where('result_id',$rid)
+                               ->first();
+                             // return response()->json($data);
+       return view('teacher.editResult',['data'=>$data]);
+
+   }
+
 
 
 }
