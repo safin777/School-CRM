@@ -100,12 +100,14 @@ Route::get('teacher.view.allNotice','TeacherController@viewAllNotice')->name('te
 Route::get('teacher/notice/edit/{nid}', 'TeacherController@editNotice');
 Route::post('teacher/notice/edit/post/{nid}','TeacherController@editNoticePost');
 
+//RESULT SECTION OF TEACHER
+
 Route::get('view.uploadResult','TeacherController@viewUploadResult')->name('view.uploadResult');
 Route::post('teacher/upload/result','TeacherController@postUploadResult');
 Route::get('view.search.result','TeacherController@viewSearchResult')->name('view.search.result');
 Route::post('teacher/search/result','TeacherController@searchResult');
-Route::get('teacher/result/edit/{rid}','TeacherController@viewEditResult');
-
+Route::get('teacher/result/edit/{result_id}','TeacherController@viewEditResult');
+Route::post('teacher/upload/result/{result_id}','TeacherController@postEditResult');
 
 
 

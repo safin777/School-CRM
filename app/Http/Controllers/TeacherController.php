@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Validator;
 use DB;
+
+
 
 class TeacherController extends Controller
 {
@@ -345,16 +348,64 @@ class TeacherController extends Controller
 
    public function viewEditResult($rid)
    {
-       $rid = base64_decode($rid);
+       $r_id = base64_decode($rid);
 
        $data = DB::table('results')
-                               ->where('result_id',$rid)
+                               ->where('result_id',$r_id)
                                ->first();
                              // return response()->json($data);
        return view('teacher.editResult',['data'=>$data]);
 
    }
 
+ public function postEditResult(Request $request, $result_id){
 
+            $t_id = session()->get('t_id');
+            $result_id = $request->result_id;
+
+            $validatedData=Validator::make($request->all(),[
+
+                'exam_type_id' => 'required',
+                'subject_id' => 'required',
+                'sid' => 'required',
+                'slug' => 'required',
+                'marks' => 'required|max:10',
+            ],
+
+            [
+                'required' => 'This field can not be blank.',
+                'max' => 'Enter less than max value.'
+            ]);
+
+
+            $data = array();
+            $data['exam_type_id']=$request->exam_type_id;
+            $data['subject_id']=$request->subject_id;
+            $data['sid']=$request->sid;
+            $data['slug']=$request->slug;
+            $data['marks']=$request->marks;
+            $data['t_id']=$t_id;
+
+            $data['timestamp']=date('Y-m-d H:i:s');
+
+            if($validatedData->fails())
+            {
+            return view('teacher.searchResult')->withErrors($validatedData);
+            }
+            else
+            {
+                $Result="Result Updated successfully";
+                $s= DB::table('results')
+                ->where('result_id',$result_id)
+                ->update($data);
+
+                //return response()->json($s);
+
+                return view('teacher.searchResult')->withErrors($Result);
+            }
+
+
+
+   }
 
 }

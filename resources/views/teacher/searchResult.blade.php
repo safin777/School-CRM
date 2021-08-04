@@ -7,7 +7,7 @@
 
       {{-- PROFILE VIEW WIDGET --}}
 
-
+      
 
         <div class="row">
             <div class="col-md-12">
@@ -62,7 +62,7 @@
 
 
                     <div class="row mx-auto">
-                        
+
 
                         <div class="col-sm-2">
                             <div class="form-group">
