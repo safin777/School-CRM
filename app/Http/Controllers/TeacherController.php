@@ -403,9 +403,99 @@ class TeacherController extends Controller
 
                 return view('teacher.searchResult')->withErrors($Result);
             }
+   }
 
+
+   public function viewUpAssignment(){
+       return view ('teacher.uploadAssignment');
+   }
+
+
+   public function postUpAssignment(Request $req){
+
+    $req->validate([
+        'file' => 'required|mimes:csv,txt,xlx,xls,pdf,zip,rar,doc|max:2048',
+        'subject_id'=>'required',
+        's_class' =>'required'
+        ]);
+
+
+        $subject_id=$req->subject_id;
+        $s_class = $req->s_class;
+        $t_id = session()->get('t_id');
+
+
+
+        $data=array();
+        $data['t_id']=$t_id;
+        $data['subject_id']=$subject_id;
+        $data['s_class'] = $s_class;
+        $data['timestamp']=date('Y-m-d H:i:s');
+
+        if($req->file()){
+             $filename =  $req->file('file')->getClientOriginalName();
+             $req->file('file')->move(public_path('../public/D Assignment/'), $filename);
+             $data['file_path'] = $filename;
+
+
+            DB::table('down_assignment')->insert($data);
+
+            return back()
+            ->with('success','File has been uploaded.');
+
+        }
+
+   }
+
+   public function viewSearchAssignment(){
+       return view('teacher.searchAssignment');
+   }
+
+   public function postSearchAssignment(Request $req){
+
+
+
+                     $t_id=session()->get('t_id');
+                     $subject_id = $req->subject_id;
+                     $s_class = $req->s_class;
+
+                     $validatedData=Validator::make($req->all(),[
+
+                            // 'exam_type_id' => 'required',
+                            // 'subject_id' => 'required',
+                            's_class' => 'required',
+                            'subject_id' => 'required',
+
+
+                    ],
+
+                    [
+                        'required' => 'Select an option first.',
+
+                    ]);
+
+                    if($validatedData->fails())
+                    {
+                    return Redirect::back()->withErrors($validatedData);
+                    }
+
+                    else{
+
+                    $assignment = DB::table('down_assignment')
+                    ->join('subject_list','subject_list.subject_id','=','down_assignment.subject_id')
+                    ->select('down_assignment.*','subject_list.subject_name','subject_list.subject_code')
+                    ->where('down_assignment.t_id','=',$t_id)
+                    ->orWhere('down_assignment.subject_id','=',$subject_id)
+                    ->orWhere('down_assignment.s_class','=',$s_class)
+                    ->get();
+
+                    return view('teacher.showSearchAssignment',['assignment'=>$assignment]);
+
+                    }
 
 
    }
+
+
 
 }
