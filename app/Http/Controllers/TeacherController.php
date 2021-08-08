@@ -495,7 +495,8 @@ class TeacherController extends Controller
    }
 
 
-      public function viewEditAssignment($d_assign_id){
+      public function viewEditAssignment($d_assign_id)
+      {
         $d_id = base64_decode($d_assign_id);
         $data = DB::table('down_assignment')
                                 ->where('d_assign_id',$d_id)
