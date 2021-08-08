@@ -105,7 +105,7 @@
             <div class="col-md-12">
                 <div class="card card-primary card-outline">
                 <div class="card-header bg-primary">
-                    <h3 class="card-title">Results</h3>
+                    <h3 class="card-title">Search Results</h3>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-hover">
@@ -113,6 +113,7 @@
                            <tr>
                               <th>Subject Name</th>
                               <th>Class</th>
+                              <th>File</th>
                               <th>Time</th>
                               <th>Action</th>
                             </tr>
@@ -125,10 +126,11 @@
 
                                 <td>{{$a->subject_name}} </td>
                                 <td>{{$a->s_class}}</td>
+                                <td>{{$a->file_path}}</td>
                                 <td>{{$a->timestamp}}</td>
                                 <td class="text-right">
-                                    <a href="{{URL::to('teacher/result/edit/'.base64_encode($a->d_assign_id))}}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Edit</a>
-                                    <a href="{{URL::to('teacher/result/delete/'.base64_encode($a->d_assign_id))}}" class="btn btn-sm btn-danger"><i class="fa fa-warning"></i>Delete</a>
+                                    <a href="{{URL::to('teacher/assignment/edit/'.base64_encode($a->d_assign_id))}}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Edit</a>
+                                    <a href="{{URL::to('teacher/assignment/delete/'.base64_encode($a->d_assign_id))}}" class="btn btn-sm btn-danger"><i class="fa fa-warning"></i>Delete</a>
                                  </td>
                             </tr>
                             @endforeach

@@ -485,17 +485,24 @@ class TeacherController extends Controller
                     ->join('subject_list','subject_list.subject_id','=','down_assignment.subject_id')
                     ->select('down_assignment.*','subject_list.subject_name','subject_list.subject_code')
                     ->where('down_assignment.t_id','=',$t_id)
-                    ->orWhere('down_assignment.subject_id','=',$subject_id)
-                    ->orWhere('down_assignment.s_class','=',$s_class)
+                    ->where('down_assignment.subject_id','=',$subject_id)
+                    ->where('down_assignment.s_class','=',$s_class)
                     ->get();
 
                     return view('teacher.showSearchAssignment',['assignment'=>$assignment]);
 
                     }
-
-
    }
 
+
+      public function viewEditAssignment($d_assign_id){
+        $d_id = base64_decode($d_assign_id);
+        $data = DB::table('down_assignment')
+                                ->where('d_assign_id',$d_id)
+                                ->first();
+                               //return response()->json($data);
+        return view('teacher.editAssignment',['data'=>$data]);
+      }
 
 
 }

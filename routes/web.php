@@ -116,6 +116,7 @@ Route::get('teacher/view/upload/assignment',"TeacherController@viewUpAssignment"
 Route::post('teacher/upload/assignment','TeacherController@postUpAssignment');
 Route::get('teacher/view/search/assignment','TeacherController@viewSearchAssignment')->name('teacher/view/search/assignment');
 Route::post('teacher/search/assignment','TeacherController@postSearchAssignment');
+Route::get('{teacher/assignment/edit/{d_assign_id}','TeacherController@viewEditAssignment');
 });
 
 
