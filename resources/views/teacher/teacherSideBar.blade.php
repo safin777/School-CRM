@@ -100,10 +100,9 @@
 							</ul>
 						</li>
 
-                        <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span>Upload Application</span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-							</ul>
+                        <li class="active">
+							<a href="{{url('teacher/upload/application')}}"><i class="fa fa-user"></i> <span>Upload Application</span> <span class="menu-arrow"></span></a>
+
 						</li>
 
                     </ul>

@@ -591,4 +591,9 @@ public function downloadAssignment($asign_id){
         return response()->download(storage_path("../public/S Assignment/{$url}"));
 }
 
+
+public function viewUploadApplication(){
+    return view ('teacher.uploadApplication');
+}
+
 }

@@ -124,6 +124,12 @@ Route::post('teacher/download/assignment/post','TeacherController@postDownloadAs
 Route::get('teacher/assignment/download/{asign_id}','TeacherController@downloadAssignment');
 
 
+//UPLOAD APPLICATION
+
+Route::get('teacher/upload/application','TeacherController@viewUploadApplication');
+
+
+
 });
 
 
