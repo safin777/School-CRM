@@ -33,27 +33,38 @@
                         </div>
                     @endif
                     <div class="row mx-auto">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for=""> Select Subject :<span style="color:red;">*</span></label>
-                                
+                               <div class="col-sm-4">
+                                    <div class="form-group ">
+                                        <label for="">Application Name<span style="color:red;">*</span></label>
+                                        <input type="text" class="form-control" name="app_name" value=""  id="">
+                                    </div>
+                                </div>
 
 
-                            </div>
-                        </div>
                         <div class="col-sm-4">
                             <div class="form-group ">
                                 <label for="">Application Category:<span style="color:red;">*</span></label>
                                 <select class="form-control" name="app_category" aria-label="Default select example" >
-                                    <option selected value="0">Nursery</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+
+                                    <option selected value="Class">Class Materials Application</option>
+                                    <option value="Fees">Payment related Application</option>
+                                    <option value="Other">Optional Application</option>
 
                                 </select>
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mx-auto">
+                        <div class="col-sm-8">
+                            <div class="form-group ">
+                                <label for=""> Application Description :<span style="color:red;">*</span></label>
+                                <textarea class="form-control" name="app_details" ></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
                     <div class="row mx-auto">
                         <div class="col-sm-4">
                             <div class="form-group">

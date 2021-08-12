@@ -127,6 +127,7 @@ Route::get('teacher/assignment/download/{asign_id}','TeacherController@downloadA
 //UPLOAD APPLICATION
 
 Route::get('teacher/upload/application','TeacherController@viewUploadApplication');
+Route::post('teacher/upload/application','TeacherController@postUploadApplication');
 
 
 

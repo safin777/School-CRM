@@ -596,4 +596,39 @@ public function viewUploadApplication(){
     return view ('teacher.uploadApplication');
 }
 
+
+public function postUploadApplication(Request $req){
+
+        $validatedData=Validator::make($req->all(),[
+            'file' => 'required|mimes:pdf,doc|max:2048',
+            'app_name'=>'required',
+            'app_details' =>'required',
+            'app_category'=>'required',
+        ],
+
+        [
+            'required' => 'This field can not be blank.',
+            'mimes' =>'Document type does not match'
+        ]);
+
+
+        $t_id=session()->get('t_id');
+        $app_name = $req->app_name;
+        $app_details =$req->app_details;
+        $app_category = $req->app_category;
+
+
+        $data=array();
+
+        $data['t_id']=$t_id;
+        $data['app_name']=$app_name;
+        $data['app_details']=$app_details;
+        $data['app_category'] = $app_category;
+        $data['timestamp']=date('Y-m-d H:i:s');
+
+
+
+
+}
+
 }
