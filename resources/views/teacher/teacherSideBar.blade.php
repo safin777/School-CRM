@@ -96,7 +96,7 @@
 							<ul style="display: none;">
 								<li><a href="{{ url('teacher/view/upload/assignment') }}">Upload Assignment</a></li>
                                 <li><a href="{{ url('teacher/view/search/assignment') }}">Search Assignment</a></li>
-                                <li><a href="{{ url('notice.add') }}">Download Assignment</a></li>
+                                <li><a href="{{ url('teacher/download/assignment') }}">Download Assignment</a></li>
 							</ul>
 						</li>
 

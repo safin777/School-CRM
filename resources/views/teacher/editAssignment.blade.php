@@ -14,14 +14,10 @@
             </div>
         </div>
         {{-- Class Test Result Serach --}}
-        <?php
-        $subject=DB::table('subject_list')
-        ->select()
-        ->get();
-        ?>
+
         <div class="row">
             <div class="card-body text-sm">
-                <form action="{{ URL::to('teacher/edit/assignment')}}"  method="post" enctype="multipart/form-data">
+                <form action="{{ URL::to('teacher/assignment/edit/post/'.$data->d_assign_id)}}"  method="post" enctype="multipart/form-data">
                     @csrf
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
@@ -37,14 +33,29 @@
                             </ul>
                         </div>
                     @endif
+
+                    <?php
+                    $subject=DB::table('subject_list')
+                    ->select()
+                    ->get();
+                    ?>
+
                     <div class="row mx-auto">
+                        <div class="col-sm-2">
+                            <div class="form-group ">
+                                <label for="">Assignment ID:<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" name="d_assignment_id" value="{{$data->d_assign_id}}" readonly >
+                            </div>
+                        </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for=""> Select Subject :<span style="color:red;">*</span></label>
                                 <select class="form-control" name="subject_id" aria-label="Default select example" >
-                                    <option selected value="0"></option>
-                                    @foreach ($subject as $data )
-                                    <option value="{{$data->subject_id}}">{{$data->subject_name}}&nbsp;<?php echo("[$data->subject_code]"); ?></option>
+                                    @foreach ($subject as $s )
+                                        @if ($data->subject_id==$s->subject_id)
+                                        <option selected value="{{$s->subject_id}}">{{$s->subject_name}}&nbsp;<?php echo("[$s->subject_code]");?></option>
+                                        @endif
+                                        <option value="{{$s->subject_id}}">{{$s->subject_name}}&nbsp;<?php echo("[$s->subject_code]"); ?></option>
                                     @endforeach
                                 </select>
                             </div>
@@ -59,31 +70,26 @@
                                 <label for="">Submitting to Class:<span style="color:red;">*</span></label>
                                 <select class="form-control" name="s_class" aria-label="Default select example" >
                                  @foreach ($class as $c )
-                                    @if($c->s_class == $data->s_class)
-                                    <option selected value="{{$c->s_class}}">{{$c->s_class_name}}></option>
+                                    @if($data->s_class==$c->s_class)
+                                    <option selected value="{{$c->s_class}}">{{$c->s_class_name}}</option>
                                     @endif
-                                    <option value="{{$c->s_class}}">{{$c->s_class_name}}></option>
+                                    <option value="{{$c->s_class}}">{{$c->s_class_name}}</option>
                                  @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="row mx-auto">
-                        <div class="col-sm-2">
-                            <div class="form-group ">
-                                <label for="">Assignment ID:<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" name="d_assignment_id" value="{{$data->d_assign_id}}" readonly >
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
+
+                        <div class="col-sm-4 mt-2">
                             <div class="form-group">
-                                <label for="formFileMultiple" class="form-label">Upload Your File Here</label>
-                                <input class="file" type="file" name="file" >
+                                <label for="formFileMultiple" class="form-label">Previous File: &nbsp; &nbsp;{{$data->file_path}}</label>
+                                <input class="file" type="file" name="file" value="{{$data->file_path}}" >
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input type="submit" class="btn btn-success btn-block hover mt-5" value="Upload" >
+                                <input type="submit" class="btn btn-success btn-block hover mt-5" value="Update" >
                             </div>
                         </div>
                     </div>
@@ -92,3 +98,8 @@
         </div>
     </div>
 </div>
+
+<script>
+
+
+</script>

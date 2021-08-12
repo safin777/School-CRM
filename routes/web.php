@@ -110,6 +110,7 @@ Route::get('teacher/result/edit/{result_id}','TeacherController@viewEditResult')
 Route::post('teacher/upload/result/{result_id}','TeacherController@postEditResult');
 
 
+
 //ASSIGNMENT SECTION
 
 Route::get('teacher/view/upload/assignment',"TeacherController@viewUpAssignment")->name('teacher/view/upload/assignment');
@@ -117,6 +118,12 @@ Route::post('teacher/upload/assignment','TeacherController@postUpAssignment');
 Route::get('teacher/view/search/assignment','TeacherController@viewSearchAssignment')->name('teacher/view/search/assignment');
 Route::post('teacher/search/assignment','TeacherController@postSearchAssignment');
 Route::get('teacher/assignment/edit/{d_assign_id}','TeacherController@viewEditAssignment');
+Route::post('teacher/assignment/edit/post/{d_assign_id}','TeacherController@postEditAssignment');
+Route::get('teacher/download/assignment','TeacherController@viewDownloadAssignment');
+Route::post('teacher/download/assignment/post','TeacherController@postDownloadAssignment');
+Route::get('teacher/assignment/download/{asign_id}','TeacherController@downloadAssignment');
+
+
 });
 
 

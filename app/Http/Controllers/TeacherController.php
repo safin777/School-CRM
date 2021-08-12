@@ -133,7 +133,9 @@ class TeacherController extends Controller
 
         $all_notice=DB::table('notices')
         ->where('n_added_by','=',$t_id)
+
         ->get();
+
         return view('teacher.viewAllNotice',['all_notice'=>$all_notice]);
 
     }
@@ -189,7 +191,6 @@ class TeacherController extends Controller
             $path = public_path('../public/notice Image/');
             $old_image=$path.$emp->n_image;
             unlink($old_image);
-
             $filename =  $request->file('n_image')->getClientOriginalName();
             $request->file('n_image')->move(public_path('../public/notice Image/'), $filename);
 
@@ -199,8 +200,6 @@ class TeacherController extends Controller
             $data['n_type_id']=$request->n_type_id;
             $data['n_added_by']=$t_id;
             $data['timestamp']=date('Y-m-d H:i:s');
-
-
 
                 if($validatedData->fails())
                 {
@@ -218,7 +217,6 @@ class TeacherController extends Controller
         }
 
         else{
-
             $data['n_image']=$emp->n_image;
             $data['n_title']=$request->n_title;
             $data['n_description']=$request->n_description;
@@ -226,13 +224,10 @@ class TeacherController extends Controller
             $data['n_added_by']=$t_id;
             $data['timestamp']=date('Y-m-d H:i:s');
 
-
-
                 if($validatedData->fails())
                 {
                    return Redirect::back()->withErrors($validatedData);
                 }
-
                 else
                {
                      $Notice="Notice Updated  successfully";
@@ -241,36 +236,27 @@ class TeacherController extends Controller
                      ->update($data);
                      return redirect('teacher.view.allNotice')->withErrors($Notice);
                }
-
-
         }
 
     }
 
-    public function viewUploadResult(){
+public function viewUploadResult(){
         return view('teacher.uploadResult');
-
     }
 
-    public function postUploadResult(Request $request){
-
+public function postUploadResult(Request $request){
         $t_id=session()->get('t_id');
-
-
         $validatedData=Validator::make($request->all(),[
-
             'exam_type_id' => 'required',
             'subject_id' => 'required',
             'sid' => 'required',
             'slug' => 'required',
             'marks' => 'required|max:10',
     ],
-
     [
         'required' => 'This field can not be blank.',
         'max' => 'Enter less than max value.'
     ]);
-
 
     $data =array();
     $data['exam_type_id']=$request->exam_type_id;
@@ -280,6 +266,7 @@ class TeacherController extends Controller
     $data['marks']=$request->marks;
     $data['t_id']=$t_id;
     $data['timestamp']=date('Y-m-d H:i:s');
+
 
     if($validatedData->fails())
     {
@@ -293,11 +280,10 @@ class TeacherController extends Controller
          ->insert($data);
          return redirect('view.uploadResult')->withErrors($Result);
    }
-
-
     }
 
-    public function viewSearchResult(){
+public function viewSearchResult(){
+
         return view('teacher.searchResult');
     }
 
@@ -411,7 +397,7 @@ class TeacherController extends Controller
    }
 
 
-   public function postUpAssignment(Request $req){
+public function postUpAssignment(Request $req){
 
     $req->validate([
         'file' => 'required|mimes:csv,txt,xlx,xls,pdf,zip,rar,doc|max:2048',
@@ -419,12 +405,9 @@ class TeacherController extends Controller
         's_class' =>'required'
         ]);
 
-
         $subject_id=$req->subject_id;
         $s_class = $req->s_class;
         $t_id = session()->get('t_id');
-
-
 
         $data=array();
         $data['t_id']=$t_id;
@@ -436,51 +419,33 @@ class TeacherController extends Controller
              $filename =  $req->file('file')->getClientOriginalName();
              $req->file('file')->move(public_path('../public/D Assignment/'), $filename);
              $data['file_path'] = $filename;
-
-
             DB::table('down_assignment')->insert($data);
-
-            return back()
-            ->with('success','File has been uploaded.');
-
+            return back()->with('success','File has been uploaded.');
         }
-
    }
 
    public function viewSearchAssignment(){
        return view('teacher.searchAssignment');
    }
-
    public function postSearchAssignment(Request $req){
-
-
-
                      $t_id=session()->get('t_id');
                      $subject_id = $req->subject_id;
                      $s_class = $req->s_class;
-
                      $validatedData=Validator::make($req->all(),[
 
-                            // 'exam_type_id' => 'required',
-                            // 'subject_id' => 'required',
                             's_class' => 'required',
                             'subject_id' => 'required',
-
-
                     ],
 
                     [
                         'required' => 'Select an option first.',
-
                     ]);
 
                     if($validatedData->fails())
                     {
                     return Redirect::back()->withErrors($validatedData);
                     }
-
                     else{
-
                     $assignment = DB::table('down_assignment')
                     ->join('subject_list','subject_list.subject_id','=','down_assignment.subject_id')
                     ->select('down_assignment.*','subject_list.subject_name','subject_list.subject_code')
@@ -490,8 +455,8 @@ class TeacherController extends Controller
                     ->get();
 
                     return view('teacher.showSearchAssignment',['assignment'=>$assignment]);
+                       }
 
-                    }
    }
 
 
@@ -504,6 +469,126 @@ class TeacherController extends Controller
                                //return response()->json($data);
         return view('teacher.editAssignment',['data'=>$data]);
       }
+      public function postEditAssignment(Request $request)
+    {
+        $validatedData=Validator::make($request->all(),[
+            'file' => 'required|mimes:csv,txt,xlx,xls,pdf,zip,rar,doc|max:2048',
+            'subject_id'=>'required',
+            's_class' =>'required',
+    ],
 
+    [
+        'required' => 'This field can not be blank.',
+        'mimes' =>'Document type does not match'
+    ]);
+
+            $subject_id=$request->subject_id;
+            $s_class = $request->s_class;
+            $t_id = session()->get('t_id');
+            $d_id=$request->d_assign_id;
+
+            if($validatedData->fails())
+            {
+            return Redirect::back('teacher/search/assignment')->withErrors($validatedData);
+            }
+            else
+            {
+            $d_id=$request->d_assign_id;
+            $existing_file = DB::table('down_assignment')
+            ->select()
+            ->where('d_assign_id',$d_id)
+            ->first();
+
+                if ($request->hasFile('file'))
+                {
+                    //return response()->json($existing_file);
+                    $path = public_path('../public/D Assignment/');
+                    $old_file=$path.$existing_file->file_path;
+                    //return response()->json($existing_file);
+
+                    $filename =  $request->file('file')->getClientOriginalName();
+                    $request->file('file')->move(public_path('../public/D Assignment/'), $filename);
+
+                    $data =array();
+                    $data['t_id']=$t_id;
+                    $data['subject_id']=$subject_id;
+                    $data['s_class'] = $s_class;
+                    $data['file_path'] = $filename;
+                    $data['timestamp']=date('Y-m-d H:i:s');
+
+                    $Notice="Assignment Updated  successfully";
+                    DB::table('down_assignment')
+                    ->where('d_assign_id',$d_id)
+                    ->update($data);
+                    unlink($old_file);
+                    return redirect('teacher/view/search/assignment')->withErrors($Notice);
+                }
+                else
+                {
+                    $data =array();
+                    $data['t_id']=$t_id;
+                    $data['subject_id']=$subject_id;
+                    $data['s_class'] = $s_class;
+                    $data['file_path'] = $request->file;
+                    $data['timestamp']= date('Y-m-d H:i:s');
+
+                    $Notice="Assignment Updated  successfully";
+                    DB::table('down_assignment')
+                    ->where('$d_assign_id',$d_id)
+                    ->update($data);
+                    return redirect('teacher/view/search/assignment')->withErrors($Notice);
+                }
+            }
+    }
+
+
+    public function viewDownloadAssignment(){
+        return view('teacher.downloadAssignment');
+    }
+
+    public function postDownloadAssignment(Request $req){
+        $t_id=session()->get('t_id');
+        $subject_id = $req->subject_id;
+        $s_class = $req->s_class;
+        $validatedData=Validator::make($req->all(),[
+
+               's_class' => 'required',
+               'subject_id' => 'required',
+       ],
+
+       [
+           'required' => 'Select an option first.',
+       ]);
+
+       if($validatedData->fails())
+       {
+       return Redirect::back()->withErrors($validatedData);
+       }
+       else{
+       $assignment = DB::table('up_assignment')
+       ->join('subject_list','subject_list.subject_id','=','up_assignment.subject_id')
+       ->join('students','students.sid','=','up_assignment.sid')
+       ->select('up_assignment.*','subject_list.subject_name','subject_list.subject_code','students.*')
+       ->where('up_assignment.t_id','=',$t_id)
+       ->where('up_assignment.subject_id','=',$subject_id)
+       ->where('up_assignment.s_class','=',$s_class)
+       ->get();
+
+       return view('teacher.showDownloadAssignment',['assignment'=>$assignment]);
+    }
+
+}
+
+
+public function downloadAssignment($asign_id){
+           $file= DB::table('up_assignment')
+           ->where('asign_id',$asign_id)
+           ->first();
+
+        $url=$file->asign_file_path;
+        //return response()->json($url);
+
+        return response()->download(storage_path("../public/S Assignment/{$url}"));
+}
 
 }

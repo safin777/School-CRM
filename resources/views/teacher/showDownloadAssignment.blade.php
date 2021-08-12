@@ -1,18 +1,25 @@
-
 @extends('teacher.teacherSideBar')
+
 @section('content')
+
 <div class="page-wrapper">
     <div class="content">
+
       {{-- PROFILE VIEW WIDGET --}}
+
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-primary card-outline">
                 <div class="card-header bg-primary">
-                    <h3 class="card-title">Upload Assignment Here</h3>
+                    <h3 class="card-title">Search To Download Assignment</h3>
                 </div>
                 </div>
             </div>
         </div>
+
+
         {{-- Class Test Result Serach --}}
         <?php
         $subject=DB::table('subject_list')
@@ -21,13 +28,14 @@
         ?>
         <div class="row">
             <div class="card-body text-sm">
-                <form action="{{ URL::to('teacher/upload/assignment')}}"  method="post" enctype="multipart/form-data">
+                <form action="{{ URL::to('teacher/download/assignment/post')}}"  method="post" enctype="multipart/form-data">
                     @csrf
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
                             <strong>{{ $message }}</strong>
                         </div>
                     @endif
+
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
                             <ul>
@@ -37,7 +45,10 @@
                             </ul>
                         </div>
                     @endif
+
+
                     <div class="row mx-auto">
+
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for=""> Select Subject :<span style="color:red;">*</span></label>
@@ -51,7 +62,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group ">
-                                <label for="">Submitting to Class:<span style="color:red;">*</span></label>
+                                <label for="">Class:<span style="color:red;">*</span></label>
                                 <select class="form-control" name="s_class" aria-label="Default select example" >
                                     <option selected value="0">Nursery</option>
                                     <option value="1">One</option>
@@ -70,21 +81,65 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row mx-auto">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="formFileMultiple" class="form-label">Upload Your File Here</label>
-                                <input class="file" type="file" name="file">
-                            </div>
-                        </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input type="submit" class="btn btn-success btn-block hover mt-5" value="Upload" >
+                                <input type="submit" class="btn btn-success btn-block hover mt-5" value="Search" >
                             </div>
                         </div>
+
                     </div>
                 </form>
             </div>
         </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                <div class="card-header bg-primary">
+                    <h3 class="card-title">Search Results</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                           <tr>
+                              <th>S.ID</th>
+                              <th>Student Name</th>
+                              <th>Subject Name</th>
+                              <th>Class</th>
+                              <th>File</th>
+                              <th>Time</th>
+                              <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($assignment as $a )
+                            <tr>
+
+                                <td>{{$a->sid}} </td>
+                                <td>{{$a->s_name}}</td>
+                                <td>{{$a->subject_name}} </td>
+                                <td>{{$a->s_class}}</td>
+                                <td>{{$a->asign_file_path}}</td>
+                                <td>{{$a->timestamp}}</td>
+                                <td class="text-right">
+                                    <a href="{{URL::to('teacher/assignment/download/'.$a->asign_id)}}" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-download">download</i></a>
+
+                                 </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 </div>
+@endsection
+
