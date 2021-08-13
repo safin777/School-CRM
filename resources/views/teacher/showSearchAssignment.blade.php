@@ -130,7 +130,7 @@
                                 <td>{{$a->timestamp}}</td>
                                 <td class="text-right">
                                     <a href="{{URL::to('teacher/assignment/edit/'.base64_encode($a->d_assign_id))}}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Edit</a>
-                                    <a href="{{URL::to('teacher/assignment/delete/'.base64_encode($a->d_assign_id))}}" class="btn btn-sm btn-danger"><i class="fa fa-warning"></i>Delete</a>
+                                    <a href="{{URL::to('teacher/assignment/delete/'.base64_encode($a->d_assign_id))}}" onclick="return confirm('Are you sure to delete this data?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Delete</a>
                                  </td>
                             </tr>
                             @endforeach

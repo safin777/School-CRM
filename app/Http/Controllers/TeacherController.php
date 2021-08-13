@@ -541,7 +541,6 @@ public function postUpAssignment(Request $req){
             }
     }
 
-
     public function viewDownloadAssignment(){
         return view('teacher.downloadAssignment');
     }
@@ -579,7 +578,6 @@ public function postUpAssignment(Request $req){
 
 }
 
-
 public function downloadAssignment($asign_id){
            $file= DB::table('up_assignment')
            ->where('asign_id',$asign_id)
@@ -611,24 +609,52 @@ public function postUploadApplication(Request $req){
             'mimes' =>'Document type does not match'
         ]);
 
-
         $t_id=session()->get('t_id');
         $app_name = $req->app_name;
         $app_details =$req->app_details;
         $app_category = $req->app_category;
-
 
         $data=array();
 
         $data['t_id']=$t_id;
         $data['app_name']=$app_name;
         $data['app_details']=$app_details;
-        $data['app_category'] = $app_category;
-        $data['timestamp']=date('Y-m-d H:i:s');
+        $data['app_catagory'] = $app_category;
+        $data['timestamp']= date('Y-m-d H:i:s');
+
+        if($validatedData->fails())
+            {
+            return Redirect::back('teacher/upload/application')->withErrors($validatedData);
+            }
+
+        else{
+            if($req->file()){
+
+                $filename =  $req->file('file')->getClientOriginalName();
+                $req->file('file')->move(public_path('../public/applications/'), $filename);
+                $data['app_file_path'] = $filename;
+
+                DB::table('applications')->insert($data);
+                $not="Application Uploaded successfully";
+                return redirect('teacher/upload/application')->withErrors($not);
+
+           }
+        }
+
+    }
+
+    public function deleteAssignment($d_assign_id){
+             $d_assign_id = base64_decode($d_assign_id);
+
+             DB::table('down_assignment')
+             ->where('d_assign_id',$d_assign_id)
+             ->delete();
 
 
+            $not="Row deleted successfully";
+            return redirect('teacher/search/assignment')->withErrors($not);
 
 
-}
+    }
 
 }

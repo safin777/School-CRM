@@ -123,6 +123,8 @@ Route::get('teacher/download/assignment','TeacherController@viewDownloadAssignme
 Route::post('teacher/download/assignment/post','TeacherController@postDownloadAssignment');
 Route::get('teacher/assignment/download/{asign_id}','TeacherController@downloadAssignment');
 
+Route::get('teacher/assignment/delete/{d_asign_id}','TeacherController@deleteAssignment');
+
 
 //UPLOAD APPLICATION
 
