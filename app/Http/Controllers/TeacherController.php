@@ -644,15 +644,15 @@ public function postUploadApplication(Request $req){
     }
 
     public function deleteAssignment($d_assign_id){
-             $d_assign_id = base64_decode($d_assign_id);
+             $d_id = base64_decode($d_assign_id);
 
              DB::table('down_assignment')
-             ->where('d_assign_id',$d_assign_id)
+             ->where('d_assign_id',$d_id)
              ->delete();
 
 
             $not="Row deleted successfully";
-            return redirect('teacher/search/assignment')->withErrors($not);
+            return redirect('teacher/view/search/assignment')->withErrors($not);
 
 
     }
