@@ -42,6 +42,23 @@
 			<h1>Teacher Login</h1>
 			<form action="{{ URL::to('post/teacher/login')}}" method="POST">
                 @csrf
+
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            
 				<input type="text" name="email" placeholder="Email" >
 				<input type="password" name="password" placeholder="Password" >
 				<input type="submit" value="Log In" onclick="click()">
@@ -51,18 +68,7 @@
 					}
 				</script>
 				<br>
-				<div>
-					<a href="{{ url('signup/create') }}">Forget Password?</a>
-					<br>
-					<br>
-
-				</div>
-
-
 			</form>
-		</div>
-		<div>
-
 		</div>
 		<script src="assets/js/jquery-3.2.1.min.js"></script>
 	</body>

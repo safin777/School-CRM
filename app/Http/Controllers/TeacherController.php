@@ -18,48 +18,79 @@ class TeacherController extends Controller
 
     public function verifyLogin(Request $req)
     {
-        $validatedData = $req->validate([
+
+        $validatedData=Validator::make($req->all(),[
             'email' => 'required|email',
             'password' => 'required|max:25|min:2',
+        ],
+
+        [
+            'email.required' => 'This email field can not be blank.',
+            'max' =>'maximum 25 character can be insert.',
+            'email'=>'Do not match with email type',
+            'min'=>'Minimum 2 character to insert. ',
+            'password.required'=>'Enter a password'
+
+
         ]);
 
         $email = $req->email;
         $password = $req->password;
 
+        if($validatedData->fails())
+        {
+        return redirect('teacher.login.view')->withErrors($validatedData);
+        }
 
-        $user = DB::table('teachers')
+        else
+        {
+            $user = DB::table('teachers')
                 ->where('t_email',$email)
                 ->where('t_password',$password)
                 ->first();
 
-        $status = $user->t_status;
-        $t_id=$user->t_id;
 
+            if ($user != null )
+            {
 
-        if ($user != null ){
+                if($user->t_status != 1)
+                {
 
-            if ($status != 1){
-                echo "Please Verify Your Email first";
-            }
+                $Notice = "Your status is not verified by the Admin";
+                return redirect('teacher.login.view')->withErrors($Notice);
 
-           else {
-                $notification=array(
-                    'messege'=>'Successfully Logged in',
-                    'alert-type'=>'success'
-                     );
-                $req->session()->put('t_id',$t_id);
-                return redirect('teacher.teacherDashboard');
+                }
+
+                else
+                {
+
+                    if($email != $user->t_email  || $password != $user->t_password )
+                    {
+                    $Notice = "Please Enter valid Email or Password";
+                    return redirect('teacher.login.view')->withErrors($Notice);
                     }
 
-        }
-        else{
-            $notification=array(
-                'messege'=>'Something went wrong !',
-                'alert-type'=>'error'
-                 );
-             return Redirect()->back()->with($notification);
+                    else
+                    {
+                        $req->session()->put('t_id',$user->t_id);
+                        return redirect('teacher.teacherDashboard');
+
+                    }
+                }
+
+            }
+
+            else
+
+            {
+                $Notice = "You are not a registered teacher of this school";
+                    return redirect('teacher.login.view')->withErrors($Notice);
+            }
+
         }
     }
+
+    
 
 
     public function viewDashboard(){
@@ -656,5 +687,19 @@ public function postUploadApplication(Request $req){
 
 
     }
+
+
+    public function deleteResult($result_id){
+        $rid = base64_decode($result_id);
+
+        DB::table('results')
+        ->where('result_id',$rid)
+        ->delete();
+
+       $not="Row deleted successfully";
+       return redirect('teacher/search/result')->withErrors($not);
+
+
+}
 
 }

@@ -109,6 +109,9 @@ Route::post('teacher/search/result','TeacherController@searchResult');
 Route::get('teacher/result/edit/{result_id}','TeacherController@viewEditResult');
 Route::post('teacher/upload/result/{result_id}','TeacherController@postEditResult');
 
+Route::get('teacher/result/delete/{result_id}','TeacherController@deleteResult');
+
+
 
 
 //ASSIGNMENT SECTION
@@ -139,6 +142,8 @@ Route::post('teacher/upload/application','TeacherController@postUploadApplicatio
 // Logout Controller
 
 Route::get('student.logout','StudentController@studentLogOut')->name('student.logout');
+
+
 
 
 

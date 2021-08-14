@@ -99,14 +99,13 @@
                             @foreach ($results as $result )
                             <tr>
                                 <td>{{$result->s_name}} </td>
-
                                 <td>{{$result->subject_name}} </td>
                                 <td>{{$result->exam_type_name}}</td>
                                 <td>{{$result->marks}}</td>
                                 <td>{{$result->timestamp}}</td>
                                 <td class="text-right">
                                     <a href="{{URL::to('teacher/result/edit/'.base64_encode($result->result_id))}}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Edit</a>
-                                    <a href="{{URL::to('teacher/result/delete/'.base64_encode($result->result_id))}}" class="btn btn-sm btn-danger"><i class="fa fa-warning"></i>Delete</a>
+                                    <a href="{{URL::to('teacher/result/delete/'.base64_encode($result->result_id))}}" onclick="return confirm('Are you sure to delete this data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>Delete</a>
                                  </td>
                             </tr>
                             @endforeach

@@ -69,7 +69,7 @@
 
                                  <td class="text-right">
                                     <a href="{{URL::to('teacher/notice/edit/'.base64_encode($data->n_id))}}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Edit</a>
-                                    <a href="{{URL::to('teacher/notice/delete/'.base64_encode($data->n_id))}}" class="btn btn-sm btn-danger"><i class="fa fa-warning"></i>Delete</a>
+
                                  </td>
 
 
@@ -78,7 +78,7 @@
                          </tbody>
                      </table>
                  </div>
-                 
+
 
              </div>
 
