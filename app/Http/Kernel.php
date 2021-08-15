@@ -52,7 +52,11 @@ class Kernel extends HttpKernel
         'TeacherAuth' => [
             \App\Http\Middleware\TeacherAuth::class,
         ],
-        
+
+        'AdminAuth' => [
+            \App\Http\Middleware\AdminAuth::class,
+        ],
+
     ];
 
     /**

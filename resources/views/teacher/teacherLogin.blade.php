@@ -4,8 +4,12 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Login Form </title>
+		<title>Login Form</title>
 		<style>
+
+            body{
+                background-color: #83c8f0
+            }
 		.login-form {
 			width: 300px;
 			margin: 0 auto;
@@ -21,7 +25,7 @@
 		.login-form input[type="text"] {
 			width: 100%;
 			padding: 15px;
-			border: 1px solid #dddddd;
+			border: 2px solid #850404;
 			margin-bottom: 15px;
 			box-sizing:border-box;
 		}
@@ -33,7 +37,7 @@
 			box-sizing: border-box;
 			cursor: pointer;
 			font-weight: bold;
-			color: #ffffff;
+			color: #56f4fa;
 		}
 		</style>
 	</head>
@@ -58,7 +62,7 @@
                     </ul>
                 </div>
             @endif
-            
+
 				<input type="text" name="email" placeholder="Email" >
 				<input type="password" name="password" placeholder="Password" >
 				<input type="submit" value="Log In" onclick="click()">

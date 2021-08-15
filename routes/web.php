@@ -3,18 +3,16 @@
 use Illuminate\Support\Facades\Route;
 
 
-
 Route::get('/','IndexController@viewIndex');
 
 Route::get('admin.login','AdminLoginController@viewLogin')->name('admin.login');
 Route::get('teacher.login.view','TeacherController@viewLogin')->name('teacher.login.view');
 Route::get('student.login','StudentController@viewlogin')->name('student.login');
+Route::post('post/admin/login','AdminLoginController@verifyLogin');
 
-// main index blog page routes
-//admin routes
+//ADMIN PAGE ROUTES
 
-
-
+Route::group(['middleware'=>['AdminAuth']],function(){
 Route::get('admin.dashboard','AdminController@viewAdminDashboard')->name('admin.dashboard');
 Route::get('register.student.add','AdminController@registerView')->name('register.student.add');
 Route::post('register/student','RegistrationController@addStudent');
@@ -30,6 +28,7 @@ Route::get('teacher/details/{t_id}', 'AdminController@teacherDetails');
 
 
 //registration controller route
+
 Route::get('notice.add','NoticeController@noticeAddView')->name('notice.add');
 Route::post('notice/add','NoticeController@addNotice');
 Route::get('notice.all','NoticeController@allNotice')->name('notice.all');
@@ -52,7 +51,7 @@ Route::get('students.pdf','PdfController@allStudentPdf');
 Route::get('add.registration.fees','TransactionController@addRegistrationFeesView')->name('add.registration.fees');
 Route::get('add.monthly.fees','TransactionController@addMonthlyFeesView')->name('add.monthly.fees');
 Route::get('add.examination.fees','TransactionController@addExaminationFeesView')->name('add.examination.fees');
-
+});
 
 
 
@@ -142,6 +141,7 @@ Route::post('teacher/upload/application','TeacherController@postUploadApplicatio
 // Logout Controller
 
 Route::get('student.logout','StudentController@studentLogOut')->name('student.logout');
+Route::get('admin.logout','AdminLoginController@adminLogOut')->name('admin.logout');
 
 
 

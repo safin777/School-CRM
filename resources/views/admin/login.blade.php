@@ -1,51 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+<html>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill9/dist/polyfill.js"></script>
 
-  <title>Login</title>
-</head>
-<body>
+	<head>
+		<meta charset="utf-8">
+		<title>Login Form </title>
+		<style>
+        body{
+            background-color: #83c8f0
+        }
+		.login-form {
+			width: 300px;
+			margin: 0 auto;
+			font-family: Tahoma, Geneva, sans-serif;
 
+		}
+		.login-form h1 {
+			text-align: center;
+			color: #4d4d4d;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+		}
+		.login-form input[type="password"],
+		.login-form input[type="text"] {
+			width: 100%;
+			padding: 15px;
+			border: 2px solid #520303;
+			margin-bottom: 15px;
+			box-sizing:border-box;
+		}
+		.login-form input[type="submit"] {
+			width: 100%;
+			padding: 15px;
+			background-color: #535b63;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #6dbdec;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="login-form">
+			<h1>Admin Login</h1>
+			<form action="{{ URL::to('post/admin/login')}}" method="POST">
+                @csrf
 
-        <body>
-            <div id="login">
-                <h3 class="text-center text-white pt-5">Welcome to School Management</h3>
-                <div class="container">
-                    <div id="login-row" class="row justify-content-center align-items-center">
-                        <div id="login-column" class="col-md-6">
-                            <div id="login-box" class="col-md-12">
-                                <form id="login-form" class="form" action="" method="post">
-                                    <h3 class="text-center text-info">Admin Login</h3>
-                                    <div class="form-group">
-                                        <label for="username" class="text-info">Username:</label><br>
-                                        <input type="text" name="username" id="username" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password" class="text-info">Password:</label><br>
-                                        <input type="text" name="password" id="password" class="form-control">
-                                    </div>
-                                    <div class="form-group mx-auto">
-                                        <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                        <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                                    </div>
-                                    <div id="register-link" class="text-right">
-                                        <a href="#" class="text-info">Register here</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <strong>{{ $message }}</strong>
                 </div>
-            </div>
-        </body>
+            @endif
 
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-
-</body>
+				<input type="text" name="email" placeholder="Email" >
+				<input type="password" name="password" placeholder="Password" >
+				<input type="submit" value="Log In" onclick="click()">
+				<script>
+					function click(){
+						swal ("You are logged in");
+					}
+				</script>
+				<br>
+			</form>
+		</div>
+		<script src="assets/js/jquery-3.2.1.min.js"></script>
+	</body>
 </html>
