@@ -19,30 +19,46 @@ class RegistrationController extends Controller
 
         $validatedData=Validator::make($request->all(),[
                                     's_name' => 'required|max:100',
-                                    's_email' => 'required|email|unique:students,s_email|max:60',
-                                    's_address' => 'required|max:255',
+                                    's_email' => 'required|email|max:60',
+                                    's_address' => 'required',
                                     's_class' => 'required',
                                     's_status' => 'required',
-                                    's_father_name' => 'required|max:50',
-                                    's_mother_name' => 'required|max:50',
-                                    's_birth_certificate_no' =>'required|max:255|unique:students,s_birth_certificate_no',
+                                    's_father_name' => 'required',
+                                    's_mother_name' => 'required',
+                                    's_birth_certificate_no' =>'required|max:25',
                                     's_gender' => 'required',
-                                    's_gurdian'=> 'required|max:30',
+                                    's_gurdian'=> 'required',
                                     's_gurdian_phone' => 'required|max:12',
                                     's_dob' => 'required',
                                     's_religion' => 'required',
-                                    's_image' => 'max:2000'|'mimes:jpg,png',
-                                    's_phone'=>'max:20',
+                                    //'s_image' => 'max:2000'|'mimes:jpg,png',
+                                    's_phone'=>'max:12',
                                     's_password'=>'max:30',
                             ],
 
                             [
-                                'required' => 'This field can not be blank.',
-                                's_email.unique' => 'This email has been used',
-                                'max' =>'Enter less than max value.',
+                                's_name.required' => 'Student name can not be blank.',
+                                's_email.required' => 'Email field  can not be blank.',
+                                's_address.required' => ' Please enter an address',
+                                's_class.required' => 'Choose at least a Class.',
+                                's_status.required' => 'Choose status of the student.',
+                                's_father_name.required' => 'Father name can not be blank.',
+                                's_mother_name.required' => 'Mother name can not be blank.',
+                                's_birth_certificate_no.required' => 'Enter birth certificate NO .',
+                                's_birth_certificate_no.max' => 'birth certificate NO exced 25 digit.',
+                                's_gender.required' =>'Select a gender',
+                                's_gurdian.required' => 'Gurdian name can not be blank.',
+                                's_gurdian_phone.required' => 'Gurdian Phone No must have to insert.',
+                                's_gurdian_phone.max' => 'Gurdian Phone NO must have 12 digit.',
+                                's_phone.max' => 'Student Phone NO must have 12 digit.',
+                                's_dob.required' =>'Select a date of birth',
+                                's_religion.required' => 'Select a religion',
                                 's_email.email'=>'Enter a valid email address',
-                                's_image.mimes'=>'File type does not match',
-                                's_image.max'=>'File size is greater than 2(megabyte)'
+                                // 's_email.unique' => 'This email is already used',
+                                //'s_image.mimes'=>'File type does not match',
+                                //'s_image.max'=>'File size is greater than 2(megabyte)',
+                                's_password.max' => 'Password 30 exced  digit.',
+
 
                             ]);
 
@@ -99,26 +115,33 @@ class RegistrationController extends Controller
    {
                     $validatedData=Validator::make($request->all(),
                     [
-                        't_name' => 'required|max:100',
-                        't_email' => 'required|email|unique:teachers,t_email|max:60',
-                        't_address' => 'required|max:255',
+                        't_name' => 'required|',
+                        't_email' => 'required|email',
+                        't_address' => 'required|',
                         't_status' => 'required',
-                        't_national_id' => 'required|max:255',
+                        't_national_id' => 'required|max:25',
                         't_gender' => 'required',
                         't_dob' => 'required',
                         't_religion' =>'required',
-                        't_phone'=>'max:20',
+                        't_phone'=>'max:12',
                         't_password'=>'max:20'
 
                     ],
 
                     [
-                        'required' => 'This field can not be blank.',
-                        't_email.unique' => 'This email has been used',
-                        'max' => 'Enter less than max value.',
+
+
+                        't_name.required' => 'Teacher name can not be blank.',
                         't_email.email'=>'Enter a valid email address',
-                    //'mimes'=>'File type does not match',
-                        //'s_image.max'=>'File size is too much bigger',
+                        't_email.required' => 'Email field  can not be blank.',
+                        't_address.required' => ' Please enter an address',
+                        't_national_id.required' => ' Please enter National ID No.',
+                        't_national_id.max' => ' National ID NO exced 25 digit.',
+                        't_dob.required' =>'Select a date of birth',
+                        't_religion.required' => 'Select a religion',
+                        't_phone.max' => 'Teacher Phone NO must have 12 digit.',
+                        't_password.max' => 'Teacher password exced 25 digit.',
+
 
                     ]);
 
@@ -135,34 +158,53 @@ class RegistrationController extends Controller
                     $data['t_phone']=$request->t_phone;
                     $data['t_password']=$request->t_password;
 
-                     //profile image
-                    $filename =  $request->file('t_image')->getClientOriginalName();
-                    $request->file('t_image')->move(public_path('../public/user Image/'), $filename);
-                    $data['t_image']=$filename;
-
-
-                    //additional multiple attachment
-
-                    $attachment=$request->file('t_file');
-                    foreach($attachment as $file)
-                    {
-                       $att[]=$file->getClientOriginalName();
-                       $file->move(public_path('../public/user File/'), $att);
-                       $data['t_file']=$att;
-                    }
-                    //return response()->json($data);
 
                     if($validatedData->fails())
                     {
-                       return Redirect::back()->withErrors($validatedData);
+                        return Redirect::back()->withErrors($validatedData);
                     }
 
                     else
-                   {
-                         $user="Teacher Info added successfully";
-                         DB::table('teachers')->insert($data);
-                         return redirect('register.student.add')->withErrors($user);
-                   }
+                    {
+                        if ($request->hasFile('t_file'))
+                        {
+                            $attachment=$request->file('t_file');
+                            foreach($attachment as $file)
+                            {
+                               $att=$file->getClientOriginalName();
+                               $file->move(public_path('../public/user File/'), $att);
+                               $data['t_files']=$att;
+                            }
+
+                                if ($request->hasFile('t_image'))
+                                {
+                                    $filename =  $request->file('t_image')->getClientOriginalName();
+                                    $request->file('t_image')->move(public_path('../public/user Image/'), $filename);
+                                    $data['t_image']=$filename;
+
+                                    $notice="Teacher Info added successfully";
+                                    DB::table('teachers')->insert($data);
+                                    return redirect('register.student.add')->withErrors($notice);
+                                }
+
+
+                                else
+                                {
+                                    $notice="Teacher Info added successfully";
+
+                                    DB::table('teachers')->insert($data);
+                                    return redirect('register.student.add')->withErrors($notice);
+                                }
+
+                        }
+
+                        else
+                        {
+                            $notice="No CV added in the attachment.";
+                            return redirect('register.student.add')->withErrors($notice);
+                        }
+                    }
+
 
    }
 }

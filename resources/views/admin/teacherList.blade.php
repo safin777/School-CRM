@@ -53,7 +53,7 @@
 
                               <tr>
 
-                                  <td>{{$data->tid}}</td>
+                                  <td>{{$data->t_id}}</td>
                                   <td>{{$data->t_name}}</td>
                                   <td>{{$data->t_email}}</td>
                                   <td>{{$data->t_address}}</td>
