@@ -45,33 +45,26 @@ class AdminLoginController extends Controller
         {
             $user = DB::table('admins')
                 ->where('a_email',$email)
-                ->where('a_password',$password)
                 ->first();
-
-
-            if ($user != null )
-            {
-                if($email != $user->a_email  || $password != $user->a_password )
-                {
-                $Notice = "Please Enter valid Email or Password";
-                return redirect('admin.login')->withErrors($Notice);
-                }
-
-                else
-                {
-                    $req->session()->put('a_id',$user->a_id);
-                    return redirect('admin.dashboard');
-
-                }
-
-            }
-
-            else
-
-            {
-                $Notice = "You are not a registered Admin of this school";
+                if($user != null){
+                    if($user->a_email != $email || $user->a_password != $password )
+                    {
+                    $Notice ="Please Enter valid Email or Password";
                     return redirect('admin.login')->withErrors($Notice);
-            }
+                    }
+
+                    else
+                    {
+                        $req->session()->put('a_id',$user->a_id);
+                        return redirect('admin.dashboard');
+
+                    }
+                }
+
+                else{
+                    $Notice ="No Registered Admin Found!";
+                    return redirect('admin.login')->withErrors($Notice);
+                }
 
         }
     }
