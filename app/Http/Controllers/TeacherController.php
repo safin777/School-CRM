@@ -90,7 +90,7 @@ class TeacherController extends Controller
         }
     }
 
-    
+
 
 
     public function viewDashboard(){
@@ -208,6 +208,7 @@ class TeacherController extends Controller
 
 
     ]);
+    
     $t_id=session()->get('t_id');
     $data =array();
 
