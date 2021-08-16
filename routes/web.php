@@ -27,6 +27,7 @@ Route::post('student/details/edit/post/{sid}','AdminController@editStudentDetail
 
 Route::get('teacher/details/{t_id}', 'AdminController@teacherDetails');
 Route::get('teacher/delete/{t_id}', 'AdminController@deleteTeacher'); //delete
+Route::post('teacher/details/edit/post/{t_id}','AdminController@editTeacherDetails');
 
 
 //registration controller route

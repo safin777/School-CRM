@@ -83,42 +83,47 @@ class AdminController extends Controller
 
                     ]);
 
-                    $data =array();
-
-                        $data['s_name']=$request->s_name;
-                        $data['s_email']=$request->s_email;
-                        $data['s_address']=$request->s_address;
-                        $data['s_class']=$request->s_class;
-                        $data['s_status']=$request->s_status;
-                        $data['s_father_name']=$request->s_father_name;
-                        $data['s_mother_name']=$request->s_mother_name;
-                        $data['s_birth_certificate_no']=$request->s_birth_certificate_no;
-                        $data['s_gender']=$request->s_gender;
-                        $data['s_gurdian']=$request->s_gurdian;
-                        $data['s_gurdian_phone']=$request->s_gurdian_phone;
-                        $data['s_dob']=$request->s_dob;
-                        $data['s_religion']=$request->s_religion;
-                        $data['timestamp']=date('Y-m-d H:i:s');
-                        $data['s_phone']=$request->s_phone;
-                        $data['s_password']=$request->s_password;
-
-                        //return response()->json($data);
-
                             if($validatedData->fails())
                             {
-                            return Redirect::back()->withErrors($validatedData);
+                                $s_details=DB::table('students')
+                                    ->where('sid',$sid)
+                                    ->first();
+                                return view('admin.viewStudentDetails',['s_details'=>$s_details])->withErrors($validatedData);
                             }
 
                             else
                             {
-                                    $s_details=DB::table('students')
-                                    ->where('sid',$sid)
-                                    ->first();
+
+                                $data =array();
+
+                                $data['s_name']=$request->s_name;
+                                $data['s_email']=$request->s_email;
+                                $data['s_address']=$request->s_address;
+                                $data['s_class']=$request->s_class;
+                                $data['s_status']=$request->s_status;
+                                $data['s_father_name']=$request->s_father_name;
+                                $data['s_mother_name']=$request->s_mother_name;
+                                $data['s_birth_certificate_no']=$request->s_birth_certificate_no;
+                                $data['s_gender']=$request->s_gender;
+                                $data['s_gurdian']=$request->s_gurdian;
+                                $data['s_gurdian_phone']=$request->s_gurdian_phone;
+                                $data['s_dob']=$request->s_dob;
+                                $data['s_religion']=$request->s_religion;
+                                $data['timestamp']=date('Y-m-d H:i:s');
+                                $data['s_phone']=$request->s_phone;
+                                $data['s_password']=$request->s_password;
+
 
                                     $user="Student's details updated  successfully";
                                     DB::table('students')
                                     ->where('sid',$sid)
                                     ->update($data);
+
+
+                                    $s_details=DB::table('students')
+                                    ->where('sid',$sid)
+                                    ->first();
+
                                     return view('admin.viewStudentDetails',['s_details'=>$s_details])->withErrors($user);
                             }
                  }
@@ -166,6 +171,82 @@ class AdminController extends Controller
                     $not="Row deleted successfully";
                     return redirect('view.teacher.list')->withErrors($not);
 
+                }
+
+
+
+                public function editTeacherDetails(Request $request , $t_id)
+                {
+                    $validatedData=Validator::make($request->all(),
+                    [
+                        't_name' => 'required|',
+                        't_email' => 'required|email',
+                        't_address' => 'required|',
+                        't_status' => 'required',
+                        't_national_id' => 'required|max:25',
+                        't_gender' => 'required',
+                        't_dob' => 'required',
+                        't_religion' =>'required',
+                        't_phone'=>'max:12',
+                        't_password'=>'max:20'
+
+                    ],
+
+                    [
+
+
+                        't_name.required' => 'Teacher name can not be blank.',
+                        't_email.email'=>'Enter a valid email address',
+                        't_email.required' => 'Email field  can not be blank.',
+                        't_address.required' => ' Please enter an address',
+                        't_national_id.required' => ' Please enter National ID No.',
+                        't_national_id.max' => ' National ID NO exced 25 digit.',
+                        't_dob.required' =>'Select a date of birth',
+                        't_religion.required' => 'Select a religion',
+                        't_phone.max' => 'Teacher Phone NO must have 12 digit.',
+                        't_password.max' => 'Teacher password exced 25 digit.',
+
+
+                    ]);
+
+
+
+                    if($validatedData->fails())
+                    {
+                        $tid = $request->t_id;
+
+                            $t_details=DB::table('teachers')
+                            ->where('t_id',$tid)
+                            ->first();
+                            return view('admin.viewTeacherDetails',['t_details'=>$t_details])->withErrors($validatedData);
+                    }
+
+                    else
+                    {
+                        $data=array();
+                        $data['t_name']=$request->t_name;
+                        $data['t_email']=$request->t_email;
+                        $data['t_address']=$request->t_address;
+                        $data['t_status']=$request->t_status;
+                        $data['t_national_id']=$request->t_national_id;
+                        $data['t_gender']=$request->t_gender;
+                        $data['t_dob']=$request->t_dob;
+                        $data['t_religion']=$request->t_religion;
+                        $data['timestamp']=date('Y-m-d H:i:s');
+                        $data['t_phone']=$request->t_phone;
+                        $data['t_password']=$request->t_password;
+
+                        $notice="Teacher Info updated successfully";
+                        DB::table('teachers')->update($data);
+
+                        $tid = $request->t_id;
+                        $t_details=DB::table('teachers')
+                        ->where('t_id',$tid)
+                        ->first();
+                    
+                        return view('admin.viewTeacherDetails',['t_details'=>$t_details])->withErrors($notice);
+
+                    }
                 }
 
 
