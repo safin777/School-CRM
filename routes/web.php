@@ -22,9 +22,11 @@ Route::get('view.student.list','AdminController@viewStudentList')->name('view.st
 Route::get('view.teacher.list','AdminController@viewTeacherList')->name('view.teacher.list');
 
 Route::get('student/details/{sid}', 'AdminController@studentDetails');
+Route::get('student/delete/{sid}', 'AdminController@deleteStudent'); //delete
 Route::post('student/details/edit/post/{sid}','AdminController@editStudentDetails');
 
 Route::get('teacher/details/{t_id}', 'AdminController@teacherDetails');
+Route::get('teacher/delete/{t_id}', 'AdminController@deleteTeacher'); //delete
 
 
 //registration controller route

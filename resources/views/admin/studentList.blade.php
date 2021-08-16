@@ -77,7 +77,7 @@
 
                                  <td class="text-right">
                                     <a href="{{ URL::to('student/details/'.base64_encode($data->sid)) }}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Details and Edit</a>
-                                    <a href="" class="btn btn-sm btn-danger"><i class="fa fa-warning"></i>Delete</a>
+                                    <a href="{{ URL::to('student/delete/'.base64_encode($data->sid)) }}" class="btn btn-sm btn-danger" onclick=" return confirm('Are you sure to delete?')"><i class="fa fa-warning"></i>Delete</a>
                                  </td>
 
 
