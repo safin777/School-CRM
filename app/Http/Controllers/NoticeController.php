@@ -181,8 +181,16 @@ class NoticeController extends Controller
 
     }
 
+    public function deleteNotice($nid)
+    {
+        $n_id = base64_decode($nid);
 
-    
+        DB::table('notices')
+        ->where('n_id',$n_id)
+        ->delete();
 
+        $not="Notice deleted successfully";
+        return redirect('notice.all')->withErrors($not);
+    }
 
 }

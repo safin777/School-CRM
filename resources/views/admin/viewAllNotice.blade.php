@@ -4,13 +4,25 @@
  <div class="page-wrapper">
      <div class="content">
          <div class="row">
+
              <div class="col-sm-4 col-3">
                  <h1 class="page-title">Notice List</h1>
              </div>
+
              <div class="col-sm-8 col-9 text-right m-b-20">
                  <a href="{{ url('notice.add') }}" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> Add Notice</a>
              </div>
          </div>
+
+         @if ($errors->any())
+         <div class="alert alert-success">
+             <ul>
+                 @foreach ($errors->all() as $error)
+                     <li>{{ $error }}</li>
+                 @endforeach
+             </ul>
+         </div>
+       @endif
          <form action="" method="">
          <div class="row filter-row">
 
@@ -69,7 +81,7 @@
 
                                  <td class="text-right">
                                     <a href="{{URL::to('notice/edit/'.base64_encode($data->n_id))}}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Edit</a>
-                                    <a href="{{URL::to('notice/delete/'.base64_encode($data->n_id))}}" class="btn btn-sm btn-danger"><i class="fa fa-warning"></i>Delete</a>
+                                    <a href="{{URL::to('notice/delete/'.base64_encode($data->n_id))}}" class="btn btn-sm btn-danger" onclick="return confirm ('Are you sure to delete this notice?')"><i class="fa fa-trash"></i>Delete</a>
                                  </td>
 
 

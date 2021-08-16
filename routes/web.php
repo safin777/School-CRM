@@ -44,6 +44,8 @@ Route::get('notice.search','SearchController@searchNotice')->name('notice.search
 Route::get('notice/edit/{nid}', 'NoticeController@editNotice');
 Route::post('notice/edit/post/{nid}','NoticeController@editNoticePost');
 
+Route::get('notice/delete/{nid}', 'NoticeController@deleteNotice');
+
 //pdf controller
 
 Route::get('studentlist.pdf','PdfController@studentListPdf');
