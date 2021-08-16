@@ -12,12 +12,12 @@
                             <img src="{{url('../user Image/'.$t_details->t_image)}}" class="card-img-top" alt="...">
                             <div class="card-body">
                             <h5 class="card-title">Teacher Details</h5>
-                            <h3>Name:{{$t_details->t_name}}</h3>
-                            <h4>Email:{{$t_details->t_email}}</h4>
+                            <h3>{{$t_details->t_name}}</h3>
+                            <h5>{{$t_details->t_email}}</h5>
                             @if ($t_details->t_status == 1)
-                            <h4 style="color: green";>Status:Active</h4>
+                            <h6 style="color: green";>Status:Active</h6>
                             @else
-                            <h4 style="color: rgb(231, 16, 16)";>Status:Inactive</h4>
+                            <h6 style="color: rgb(231, 16, 16)";>Status:Inactive</h6>
                             @endif
 
                             </div>
