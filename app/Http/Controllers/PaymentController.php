@@ -178,4 +178,82 @@ class PaymentController extends Controller
             }
     }
 
+
+
+    public function postMonthlyFee(Request $request){
+
+        $validatedData=Validator::make($request->all(),
+        [
+            'sid' => 'required',
+            'month_id' => 'required',
+            'total_amount' => 'required',
+            'paid_amount' => 'required',
+        ],
+
+        [
+
+
+            'sid.required' => 'Required student ID',
+            'month_id.required' => 'Select a month',
+            'total_amount.required' => ' Please enter total amount',
+            'paid_amount.max' => ' Please enter paid amount',
+
+        ]);
+
+
+        if($validatedData->fails())
+            {
+                    return view('admin.addMonthlyFees')->withErrors($validatedData);
+            }
+
+        else{
+
+               $sid = $request->sid;
+               $sid_checking = DB::table('students')
+               ->where('sid',$sid)
+               ->first();
+
+               if($sid_checking == null)
+                {
+                    $not = "The student ID you entered is not registred by admin";
+                    return view('admin.addMonthlyFees')->withErrors($not);
+                }
+
+                else
+                {
+
+                    $a_id=session()->get('a_id');
+
+                    $data = array();
+                    $data['a_id']=$a_id;
+                    $data['sid']=$request->sid;
+                    $data['month_id']=$request->month_id;
+                    $data['total_amount'] = $request->total_amount;
+                    $data['paid_amount'] = $request->paid_amount;
+                    $data['due_amount'] = $request->due_amount;
+                    $data['timestamp']= date('Y-m-d H:i:s');
+
+                    $transaction_array = array();
+                    $transaction_array['a_id']=$a_id;
+                    $transaction_array['sid']=$request->sid;
+                    $transaction_array['total_amount'] = $request->total_amount;
+                    $transaction_array['paid_amount'] = $request->paid_amount;
+                    $transaction_array['due_amount'] = $request->due_amount;
+                    $transaction_array['trans_type'] ="monthly fee";
+                    $transaction_array['timestamp']= date('Y-m-d H:i:s');
+
+
+                     DB::table('monthly_fees')->insert($data);
+                     DB::table('transactions')->insert($transaction_array);
+
+                     $not=" Monthly fee inserted successfully";
+                     return redirect('add.monthly.fees')->withErrors($not);
+
+
+
+                }
+
+            }
+    }
+
 }

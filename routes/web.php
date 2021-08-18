@@ -60,6 +60,7 @@ Route::get('add.examination.fees','TransactionController@addExaminationFeesView'
 //PAYMENT CONTROLLER
 Route::post('admission/fee/add','PaymentController@postRegistrationFee');
 Route::post('examination/fee/add','PaymentController@postExaminationFee');
+Route::post('monthly/fee/add','PaymentController@postMonthlyFee');
 
 
 });
