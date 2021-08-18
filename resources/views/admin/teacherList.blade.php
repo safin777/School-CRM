@@ -1,4 +1,9 @@
 @extends('admin.layouts.adminSidebar')
+
+@section('styles')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+@endsection
+
 @section('content')
 
  <div class="page-wrapper">
@@ -11,29 +16,13 @@
                  <a href="{{ URL::to('register.student.add') }}" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> Add Teacher</a>
              </div>
          </div>
-         <form action="" method="">
-         <div class="row filter-row">
-
-             <div class="col-sm-6 col-md-3">
-                 <div class="form-group form-focus">
-                     <label class="focus-label">Teacher ID / Teacher Name</label>
-                     <input type="text" class="form-control floating" name="search" id="search">
-                 </div>
-             </div>
-
-             <div class="col-sm-6 col-md-3">
-                <button form action="" class="btn btn-success btn-block">Search</button>
-             </div>
-         </div>
-         </form>
 
          <div class="row">
              <div class="col-md-12">
                  <div class="table-responsive">
-                     <table class="table table-bordered table-hover">
+                     <table id="arafat2" class="table table-bordered table-hover">
                          <thead>
                              <tr>
-
                                 <th>Teacher ID</th>
                                 <th>Teacher Name</th>
                                 <th>Email</th>
@@ -79,30 +68,19 @@
                      </table>
                  </div>
              </div>
-
-             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-                <script type="text/javascript">
-                    $('#search').on('keyup',function(){
-                    $value=$(this).val();
-                    console.log($value);
-                    $.ajax({
-                    type : 'get',
-                    url : '{{route('notice.search')}}',
-                    data:{'search':$value},
-                    success:function(data){
-                    console.log(data);
-                    $('tbody').html(data);
-                    }
-                    });
-                    })
-                    </script>
-                    <script type="text/javascript">
-                    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-                    </script>
          </div>
      </div>
 
  </div>
 
+ @endsection
+
+ @section('javascript')
+ <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+ <script>
+     $(document).ready( function () {
+      $('#arafat2').DataTable();
+     } );
+   </script>
  @endsection
 

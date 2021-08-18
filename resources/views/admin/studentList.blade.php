@@ -1,6 +1,9 @@
 @extends('admin.layouts.adminSidebar')
-@section('content')
+@section('styles')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+@endsection
 
+@section('content')
  <div class="page-wrapper">
      <div class="content">
          <div class="row">
@@ -12,26 +15,11 @@
                  <a href="{{ URL::to('studentlist.pdf') }}" class="btn btn-danger float-right btn-rounded"><i class="fa fa-file-pdf-o" style="color:white"></i> Print Report</a>
              </div>
          </div>
-         <form action="" method="">
-         <div class="row filter-row">
-
-             <div class="col-sm-6 col-md-3">
-                 <div class="form-group form-focus">
-                     <label class="focus-label">Student ID / Student Name</label>
-                     <input type="text" class="form-control floating" name="search" id="search">
-                 </div>
-             </div>
-
-             <div class="col-sm-6 col-md-3">
-                <button formaction="" class="btn btn-success btn-block">Search</button>
-             </div>
-         </div>
-         </form>
 
          <div class="row">
              <div class="col-md-12">
                  <div class="table-responsive">
-                     <table class="table table-bordered table-hover">
+                     <table id = "arafat2" class="table table-bordered table-hover">
                          <thead>
                              <tr>
 
@@ -113,4 +101,13 @@
  </div>
 
  @endsection
+
+ @section('javascript')
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready( function () {
+     $('#arafat2').DataTable();
+    } );
+  </script>
+@endsection
 

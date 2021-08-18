@@ -62,6 +62,11 @@ Route::post('admission/fee/add','PaymentController@postRegistrationFee');
 Route::post('examination/fee/add','PaymentController@postExaminationFee');
 Route::post('monthly/fee/add','PaymentController@postMonthlyFee');
 
+//TRANSACTION LIST
+Route::get('transaction.list','TransactionController@viewTransactionList');
+
+
+
 
 });
 

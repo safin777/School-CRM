@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -17,19 +14,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/style2.css') }}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  </head>
-    <!--[if lt IE 9]>
-		<script src="/assets/js/html5shiv.min.js"></script>
-		<script src="/assets/js/respond.min.js"></script>
-	<![endif]-->
 </head>
-
 <body>
-
-
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
@@ -40,8 +32,6 @@
 			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
             <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
             <ul class="nav user-menu float-right">
-
-
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         <span class="user-img">
@@ -69,7 +59,6 @@
                 </div>
             </div>
         </div>
-
         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">
                 <div id="sidebar-menu" class="sidebar-menu">
@@ -79,7 +68,7 @@
                             <a href="{{ url('admin.dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
                         <li class="active">
-                            <a href="{{ url('admin.dashboard') }}"><i class="fa fa-list"></i> <span>Transaction List</span></a>
+                            <a href="{{ url('transaction.list') }}"><i class="fa fa-list"></i> <span>Transaction List</span></a>
                         </li>
                         <li>
                             <a href="{{ url('register.student.add') }}"><i class="fa fa-user-plus"></i> <span>Register User</span></a>
@@ -111,6 +100,7 @@
             </div>
         </div>
         @yield('content')
+        @yield('styles')
         <script src="{{ asset ('/assets/js/jquery-3.2.1.min.js') }}"></script>
         <script src="{{ asset ('/assets/js/popper.min.js') }}"></script>
         <script src="{{ asset ('/assets/js/bootstrap.min.js') }}"></script>
@@ -120,9 +110,9 @@
         <script src="{{ asset ('/assets/js/app.js') }}"></script>
         <script src="{{ asset ('/assets/js/bootstrap-datetimepicker.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script  type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
+        <script src="{{asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
         <script>
             @if(Session::has('messege'))
               var type="{{Session::get('alert-type','info')}}"
@@ -142,25 +132,6 @@
               }
             @endif
          </script>
-      <script>
-        $(document).on("click", "#delete", function(e){
-            e.preventDefault();
-            var link = $(this).attr("action");
-               swal({
-                 title: "Are you Want to delete?",
-                 text: "Once Delete, This will be Permanently Delete!",
-                 icon: "warning",
-                 buttons: true,
-                 dangerMode: true,
-               })
-               .then((willDelete) => {
-                 if (willDelete) {
-                      window.location.action = link;
-                 } else {
-                   swal("Safe Data!");
-                 }
-               });
-           });
-   </script>
+         @yield('javascript')
     </body>
     </html>

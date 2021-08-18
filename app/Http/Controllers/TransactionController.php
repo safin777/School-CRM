@@ -28,6 +28,21 @@ class TransactionController extends Controller
     {
         return view('admin.addExaminationFees');
     }
-    
+
+    public function viewTransactionList()
+    {
+        $transactions = DB::table('transactions')
+        ->join('admins','admins.a_id','=','transactions.a_id')
+        ->join('students','students.sid','=','transactions.sid')
+        ->select('transactions.*','students.*','admins.*')
+        ->get();
+
+        return view('admin.transactionList',['transactions'=>$transactions]);
+
+
+    }
+
+
+
 
 }
