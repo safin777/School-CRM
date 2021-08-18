@@ -83,16 +83,99 @@ class PaymentController extends Controller
 
                     $not=" Registration fee inserted successfully";
                     return redirect('add.registration.fees')->withErrors($not);
+                }
+
+            }
+
+    }
 
 
+    public function postExaminationFee(Request $request){
+
+        $validatedData=Validator::make($request->all(),
+        [
+            'sid' => 'required',
+            'exam_type_id' => 'required',
+            'total_amount' => 'required',
+            'paid_amount' => 'required',
+        ],
+
+        [
 
 
+            'sid.required' => 'Required student ID',
+            'exam_type_id.required' => 'Select a exam type',
+            'total_amount.required' => ' Please enter total amount',
+            'paid_amount.max' => ' Please enter paid amount',
+
+        ]);
+
+
+        if($validatedData->fails())
+            {
+                    return view('admin.addExaminationFees')->withErrors($validatedData);
+            }
+
+        else{
+
+               $sid = $request->sid;
+               $sid_checking = DB::table('students')
+               ->where('sid',$sid)
+               ->first();
+
+               if($sid_checking == null)
+                {
+                    $not = "The student ID you entered is not registred by admin";
+                    return view('admin.addExaminationFees')->withErrors($not);
+                }
+
+                else
+                {
+                    $pay_status = DB::table('examination_fees')
+                    ->select()
+                    ->where('sid',$request->sid)
+                    ->where('exam_type_id',$request->exam_type_id)
+                    ->first();
+
+                   if( $pay_status != null){
+                    $not = "The student already paid examiation fees";
+                    return view('admin.addExaminationFees')->withErrors($not);
+                   }
+
+                   else
+                   {
+                    $a_id=session()->get('a_id');
+
+                    $data = array();
+                    $data['a_id']=$a_id;
+                    $data['sid']=$request->sid;
+                    $data['exam_type_id']=$request->exam_type_id;
+                    $data['total_amount'] = $request->total_amount;
+                    $data['paid_amount'] = $request->paid_amount;
+                    $data['due_amount'] = $request->due_amount;
+                    $data['timestamp']= date('Y-m-d H:i:s');
+
+                    $transaction_array = array();
+                    $transaction_array['a_id']=$a_id;
+                    $transaction_array['sid']=$request->sid;
+                    $transaction_array['total_amount'] = $request->total_amount;
+                    $transaction_array['paid_amount'] = $request->paid_amount;
+                    $transaction_array['due_amount'] = $request->due_amount;
+                    $transaction_array['trans_type'] ="examination fee";
+                    $transaction_array['timestamp']= date('Y-m-d H:i:s');
+
+
+                     DB::table('examination_fees')->insert($data);
+                     DB::table('transactions')->insert($transaction_array);
+
+                     $not=" Examination fee inserted successfully";
+                     return redirect('add.examination.fees')->withErrors($not);
+                   }
 
 
                 }
 
             }
-
     }
 
 }

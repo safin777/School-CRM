@@ -21,7 +21,7 @@
         <div class="row">
             <div class="card-body text-sm">
 
-                <form action="{{ URL::to('notice/add')}}"  method="post" enctype="multipart/form-data">
+                <form action="{{ URL::to('examination/fee/add')}}"  method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         @if ($errors->any())
@@ -40,63 +40,51 @@
 
                             <div class="form-group ">
                                 <label for=""> Student ID:<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" name="n_title" value="" id="">
+                                <input type="text" class="form-control" name="sid" value="" id="">
                             </div>
                         </div>
+
+                        <?php
+                        $exam = DB::table('exam_type')
+                        ->get();
+                        ?>
+
 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for=""> Class :<span style="color:red;">*</span></label>
-                                <select class="form-control" name="n_type_id" aria-label="Default select example" >
-                                    <option selected value="0">Nursery</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                    <option value="4">Four</option>
-                                    <option value="5">Five</option>
-                                    <option value="6">Six</option>
-                                    <option value="7">Seven</option>
-                                    <option value="8">Eight</option>
-                                    <option value="9">Nine</option>
-                                    <option value="10">Ten</option>
-                                    <option value="11">Eleven</option>
-                                    <option value="12">Twelve</option>
+                                <label for=""> Exam Type :<span style="color:red;">*</span></label>
+                                <select class="form-control" name="exam_type_id" aria-label="Default select example" >
+                                    <option selected value="0">-- Select Exam Type --</option>
+                                    @foreach ($exam as $data )
+                                    <option value="{{$data->exam_type_id}}">{{$data->exam_type_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
-                    </div>                               {{--Row 1--}}
+
+                    </div>
+
+
 
 
                     <div class="row mx-auto">
-                        <div class="col-sm-9">
+                        <div class="col-sm-12">
                                 {{-- Reciept title section --}}
-
                                 <div class="row">
 
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for=""> Examination Type :<span style="color:red;">*</span></label>
-                                            <select class="form-control" name="n_type_id" aria-label="Default select example" >
-                                                <option selected value="0">--Select Examination--</option>
-                                                <option value="1">First Term</option>
-                                                <option value="2">Mid-term</option>
-                                                <option value="3">Final</option>
-                                                <option value="3">Class Test</option>
-                                            </select>
-                                        </div>
-                                    </div>
+
 
                                     <div class="col-sm-4">
                                         <div class="form-group ">
                                             <label for="">Total Amount:<span style="color:red;">*</span></label>
-                                            <input type="text" class="form-control" name="reg_fee" value="" placeholder="2000Tk" id="">
+                                            <input  type="text" class="form-control " name="total_amount" value="" id="total_amount">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <div class="form-group ">
                                             <label for="">Paid Amount:<span style="color:red;">*</span></label>
-                                            <input type="text" class="form-control" name="reg_fee" value="" placeholder="2000Tk" id="">
+                                            <input onkeyup="dueAmount()" type="text" class="form-control" name="paid_amount" value="" id="paid_amount">
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +93,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group ">
                                             <label for="">Due Amount:<span style="color:red;">*</span></label>
-                                            <input type="text" class="form-control" name="reg_fee" value="" placeholder="2000Tk" id="">
+                                            <input type="text" class="form-control" name="due_amount" value=""  id="due_amount">
                                         </div>
                                     </div>
                                 </div>
@@ -114,19 +102,14 @@
 
                                     <div class="col-md-3">
                                         <div class="form-group ">
-                                            <input type="submit" class="btn btn-success btn-block hover" value="Pay with Reciept" >
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-3">
-                                        <div class="form-group ">
-                                            <input type="submit" class="btn btn-info btn-block hover" value="Pay without Reciept" >
+                                         <input type="submit" class="btn btn-success btn-block hover" value="Pay Fee" >
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group ">
-                                            <input type="submit" class="btn btn-danger btn-block hover" value="Cancel" >
+                                            <a href="#" class="btn btn-md btn-danger hover"><i class="fa fa-backward" aria-hidden="true"></i> &nbsp; Cancel</a>
                                         </div>
                                     </div>
 
@@ -135,15 +118,19 @@
                         </div>
                     </div>    {{--Row 2--}}
 
-
                 </form>
             </div>
         </div>
     </div>{{-- container for holding form--}}
 </div> {{-- main container end --}}
+<script type="text/javascript">
+function dueAmount(){
+    var total = document.getElementById('total_amount').value;
+    var paid = document.getElementById('paid_amount').value;
+    var due = 0;
 
-
-
-
-
+    due = total - paid;
+    document.getElementById('due_amount').value = due;
+}
+</script>
 @endsection
