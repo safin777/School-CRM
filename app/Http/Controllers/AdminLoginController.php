@@ -71,7 +71,7 @@ class AdminLoginController extends Controller
 
     public function adminLogOut(){
 
-        session()->forget('a_id');
+       session()->forget('a_id');
        return redirect('admin.login');
     }
 

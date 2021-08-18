@@ -10,6 +10,7 @@
     <title>School Management</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.min.css') }}">
@@ -77,93 +78,39 @@
                         <li class="active">
                             <a href="{{ url('admin.dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
-
-                        <li>
-                            <a href="{{ url('register.student.add') }}"><i class="fa fa-user-md"></i> <span>Register User</span></a>
+                        <li class="active">
+                            <a href="{{ url('admin.dashboard') }}"><i class="fa fa-list"></i> <span>Transaction List</span></a>
                         </li>
-
+                        <li>
+                            <a href="{{ url('register.student.add') }}"><i class="fa fa-user-plus"></i> <span>Register User</span></a>
+                        </li>
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> User List </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-users"></i> <span> User List </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="{{ url('view.student.list') }}">Students List</a></li>
                                 <li><a href="{{ url('view.teacher.list') }}">Teacher List</a></li>
 							</ul>
 						</li>
-
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Notices</span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-envelope-square"></i> <span> Notices</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="{{ url('notice.all') }}">View All Notice</a></li>
                                 <li><a href="{{ url('notice.add') }}">Add Notice</a></li>
 							</ul>
 						</li>
-
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span>Fees & Account </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="far fa-comments-alt-dollar"></i> <span>Fees & Account </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
                                 <li><a href="{{ url('add.registration.fees') }}">Registration Fee</a></li>
 								<li><a href="{{ url('add.monthly.fees') }}">Monthly Fee</a></li>
                                 <li><a href="{{ url('add.examination.fees') }}">Examination Fee</a></li>
-
-
-
-
-
 							</ul>
 						</li>
-
-
-						{{-- <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="{{ url('employee') }}">Transaction Report</a></li>
-                                <li><a href="{{ url('employee') }}">Student Report</a></li>
-                                <li><a href="{{ url('employee') }}">Teacher Report</a></li>
-
-
-							</ul>
-						</li> --}}
-
-						{{-- <li class="submenu">
-							<a href="#"><i class="fa fa-book"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="/receipt"> Employee Salary </a></li>
-
-							</ul>
-						</li>
-                        --}}
-{{--
-                        <li class="submenu">
-                            <a href="#"><i class="fa fa-envelope"></i> <span> Email</span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="/compose">Compose Mail</a></li>
-                                <li><a href="/inbox">Inbox</a></li>
-
-                            </ul>
-                        </li> --}}
-
-						{{-- <li>
-							<a href="/store"><i class="fa fa-cube"></i> <span>Medicine Store</span></a>
-						</li>
-						 --}}
-
-
-
-
-
-
-
-
                     </ul>
                 </div>
-
             </div>
-
         </div>
         @yield('content')
-
-
-
         <script src="{{ asset ('/assets/js/jquery-3.2.1.min.js') }}"></script>
         <script src="{{ asset ('/assets/js/popper.min.js') }}"></script>
         <script src="{{ asset ('/assets/js/bootstrap.min.js') }}"></script>
@@ -174,10 +121,8 @@
         <script src="{{ asset ('/assets/js/bootstrap-datetimepicker.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
-
         <script>
             @if(Session::has('messege'))
               var type="{{Session::get('alert-type','info')}}"
@@ -197,8 +142,6 @@
               }
             @endif
          </script>
-
-
       <script>
         $(document).on("click", "#delete", function(e){
             e.preventDefault();
@@ -219,9 +162,5 @@
                });
            });
    </script>
-
     </body>
-
-
-
     </html>
