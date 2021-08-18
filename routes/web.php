@@ -56,6 +56,10 @@ Route::get('students.pdf','PdfController@allStudentPdf');
 Route::get('add.registration.fees','TransactionController@addRegistrationFeesView')->name('add.registration.fees');
 Route::get('add.monthly.fees','TransactionController@addMonthlyFeesView')->name('add.monthly.fees');
 Route::get('add.examination.fees','TransactionController@addExaminationFeesView')->name('add.examination.fees');
+
+//PAYMENT CONTROLLER
+Route::post('admission/fee/add','PaymentController@postRegistrationFee');
+
 });
 
 

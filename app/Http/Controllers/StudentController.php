@@ -30,13 +30,12 @@ class StudentController extends Controller
                 ->where('s_password',$password)
                 ->first();
                // dd(DB::getQueryLog());
-        $status = $user->s_status;
-        $sid=$user->sid;
+       
 
 
         if ($user != null ){
 
-            if ($status != 1){
+            if ($user->s_status != 1){
                 echo "Please Verify Your Email first";
             }
 
@@ -45,7 +44,7 @@ class StudentController extends Controller
                     'messege'=>'Successfully Logged in',
                     'alert-type'=>'success'
                      );
-                $req->session()->put('sid' , $sid);
+                $req->session()->put('sid' ,$user->sid);
                 return redirect('student.dashboard');
                     }
 

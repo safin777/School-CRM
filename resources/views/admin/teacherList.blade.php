@@ -22,7 +22,7 @@
              </div>
 
              <div class="col-sm-6 col-md-3">
-                <button formaction="" class="btn btn-success btn-block">Search</button>
+                <button form action="" class="btn btn-success btn-block">Search</button>
              </div>
          </div>
          </form>
@@ -69,15 +69,10 @@
                                 <td>{{$data->t_national_id}}</td>
 
 
-
-
-
                                  <td class="text-right">
                                     <a href="{{ URL::to('teacher/details/'.base64_encode($data->t_id)) }}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Details and Edit</a>
-                                    <a href="{{ URL::to('teahcer/delete/'.base64_encode($data->t_id)) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete?')"><i class="fa fa-warning"></i>Delete</a>
+                                    <a href="{{ URL::to('teahcer/delete/'.base64_encode($data->t_id)) }}" class="btn btn-sm btn-danger" onclick=" return confirm('Are you sure to delete?')"><i class="fa fa-warning"></i>Delete</a>
                                  </td>
-
-
                              </tr>
                              @endforeach
                          </tbody>

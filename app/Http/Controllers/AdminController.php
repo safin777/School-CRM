@@ -162,10 +162,10 @@ class AdminController extends Controller
                 public function deleteTeacher($t_id)
                 {
 
-                    $tid = base64_decode($t_id);
+                    $t_id = base64_decode($t_id);
 
                     DB::table('teachers')
-                    ->where('t_id',$tid)
+                    ->where('t_id', $t_id)
                     ->delete();
 
                     $not="Row deleted successfully";
@@ -179,9 +179,9 @@ class AdminController extends Controller
                 {
                     $validatedData=Validator::make($request->all(),
                     [
-                        't_name' => 'required|',
+                        't_name' => 'required',
                         't_email' => 'required|email',
-                        't_address' => 'required|',
+                        't_address' => 'required',
                         't_status' => 'required',
                         't_national_id' => 'required|max:25',
                         't_gender' => 'required',
@@ -243,7 +243,7 @@ class AdminController extends Controller
                         $t_details=DB::table('teachers')
                         ->where('t_id',$tid)
                         ->first();
-                    
+
                         return view('admin.viewTeacherDetails',['t_details'=>$t_details])->withErrors($notice);
 
                     }
