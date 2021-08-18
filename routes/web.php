@@ -67,7 +67,7 @@ Route::get('transaction.list','TransactionController@viewTransactionList');
 Route::get('transaction/edit/{trans_id}', 'TransactionController@editTransactionGet');
 
 
-Route::post('transaction/edit/post','TransactionController@editTransactionPost');
+Route::post('transaction/edit/post/{trans_id}','TransactionController@editTransactionPost');
 
 
 

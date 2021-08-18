@@ -53,11 +53,11 @@ class TransactionController extends Controller
     }
 
 
-    public function editTransactionPost(Request $request){
+    public function editTransactionPost(Request $request , $trans_id){
         $validatedData=Validator::make($request->all(),
         [
             'sid' => 'required',
-            'month_id' => 'required',
+            'trans_type' => 'required',
             'total_amount' => 'required',
             'paid_amount' => 'required',
         ],
@@ -66,7 +66,7 @@ class TransactionController extends Controller
 
 
             'sid.required' => 'Required student ID',
-            'month_id.required' => 'Select a month',
+            'trans_type.required' => 'Select Transaction Type',
             'total_amount.required' => ' Please enter total amount',
             'paid_amount.max' => ' Please enter paid amount',
 
@@ -75,35 +75,16 @@ class TransactionController extends Controller
 
         if($validatedData->fails())
             {
-                    return view('admin.addMonthlyFees')->withErrors($validatedData);
+
+                $transactions = DB::table('transactions')
+                ->where('trans_id',$request->trans_id)
+                ->first();
+                return view('admin.transactionDetails',['transactions'=>$transactions])->withErrors($validatedData);
             }
 
         else{
 
-               $sid = $request->sid;
-               $sid_checking = DB::table('students')
-               ->where('sid',$sid)
-               ->first();
-
-               if($sid_checking == null)
-                {
-                    $not = "The student ID you entered is not registred by admin";
-                    return view('admin.addMonthlyFees')->withErrors($not);
-                }
-
-                else
-                {
-
                     $a_id=session()->get('a_id');
-
-                    $data = array();
-                    $data['a_id']=$a_id;
-                    $data['sid']=$request->sid;
-                    $data['month_id']=$request->month_id;
-                    $data['total_amount'] = $request->total_amount;
-                    $data['paid_amount'] = $request->paid_amount;
-                    $data['due_amount'] = $request->due_amount;
-                    $data['timestamp']= date('Y-m-d H:i:s');
 
                     $transaction_array = array();
                     $transaction_array['a_id']=$a_id;
@@ -111,19 +92,18 @@ class TransactionController extends Controller
                     $transaction_array['total_amount'] = $request->total_amount;
                     $transaction_array['paid_amount'] = $request->paid_amount;
                     $transaction_array['due_amount'] = $request->due_amount;
-                    $transaction_array['trans_type'] ="monthly fee";
+                    $transaction_array['trans_type'] =$request->trans_type;
                     $transaction_array['timestamp']= date('Y-m-d H:i:s');
 
+                     DB::table('transactions')
+                     ->where('trans_id',$request->trans_id)
+                     ->update($transaction_array);
 
-                     DB::table('monthly_fees')->insert($data);
-                     DB::table('transactions')->insert($transaction_array);
-
+                     $transactions = DB::table('transactions')
+                        ->where('trans_id',$request->trans_id)
+                        ->first();
                      $not="Transaction details updated !";
-                     return redirect('add.monthly.fees')->withErrors($not);
-
-
-
-                }
+                     return view('admin.transactionDetails',['transactions'=>$transactions])->withErrors($not);
 
             }
     }

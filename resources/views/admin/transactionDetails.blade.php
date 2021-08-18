@@ -20,7 +20,7 @@
         <div class="row">
             <div class="card-body text-sm">
 
-                <form action="{{ URL::to('transaction/edit/post')}}"  method="post" enctype="multipart/form-data">
+                <form action="{{ URL::to('transaction/edit/post/'.$transactions->trans_id)}}"  method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         @if ($errors->any())
