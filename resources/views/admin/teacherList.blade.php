@@ -60,7 +60,7 @@
 
                                  <td class="text-right">
                                     <a href="{{ URL::to('teacher/details/'.base64_encode($data->t_id)) }}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Details and Edit</a>
-                                    <a href="{{ URL::to('teahcer/delete/'.base64_encode($data->t_id)) }}" class="btn btn-sm btn-danger" onclick=" return confirm('Are you sure to delete?')"><i class="fa fa-warning"></i>Delete</a>
+                                    <a href="{{ URL::to('teahcer/delete/'.base64_encode($data->t_id)) }}" class="btn btn-sm btn-danger" onclick= "return confirm('Are you sure to delete?')"><i class="fa fa-warning"></i>Delete</a>
                                  </td>
                              </tr>
                              @endforeach

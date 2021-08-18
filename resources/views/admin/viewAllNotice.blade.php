@@ -65,7 +65,7 @@
 
                                  <td class="text-right">
                                     <a href="{{URL::to('notice/edit/'.base64_encode($data->n_id))}}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Edit</a>
-                                    <a href="{{URL::to('notice/delete/'.base64_encode($data->n_id))}}" class="btn btn-sm btn-danger" onclick="return confirm ('Are you sure to delete this notice?')"><i class="fa fa-trash"></i>Delete</a>
+                                    <a href="{{URL::to('notice/delete/'.base64_encode($data->n_id))}}" class="btn btn-sm btn-danger" onclick="return confirm ('Are you sure to delete this notice?')"><i class="fal fa-trash-alt"></i>Delete</a>
                                  </td>
 
 

@@ -37,15 +37,15 @@
                                  <td>{{$transaction->trans_id}}</td>
                                   <td>{{$transaction->sid}}</td>
                                   <td>{{$transaction->s_name}}</td>
-                                  <td>{{$transaction->a_fullname}}</td>
+                                  <td>{{$transaction->a_fullname}}--[{{$transaction->a_id}}]</td>
                                   <td>{{$transaction->total_amount}}</td>
                                   <td>{{$transaction->paid_amount}}</td>
                                   <td>{{$transaction->due_amount}}</td>
                                   <td>{{$transaction->trans_type}}</td>
                                   <td>{{$transaction->timestamp}}</td>
                                  <td class="text-right">
-                                    <a href="{{ URL::to('teacher/details/'.base64_encode($transaction->trans_id)) }}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Details and Edit</a>
-                                    <a href="{{ URL::to('teahcer/delete/'.base64_encode($transaction->trans_id)) }}" class="btn btn-sm btn-danger" onclick=" return confirm('Are you sure to delete?')"><i class="fa fa-warning"></i>Delete</a>
+                                    <a href="{{ URL::to('transaction/edit/'.base64_encode($transaction->trans_id)) }}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Details and Edit</a>
+                                    <a href="{{ URL::to('teahcer/delete/'.base64_encode($transaction->trans_id)) }}" class="btn btn-sm btn-danger" onclick=" return confirm('Are you sure to delete?')"><i class="fal fa-trash-alt"></i>Delete</a>
                                  </td>
                              </tr>
                             @endforeach
