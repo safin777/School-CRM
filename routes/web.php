@@ -68,6 +68,9 @@ Route::get('transaction/edit/{trans_id}', 'TransactionController@editTransaction
 
 
 Route::post('transaction/edit/post/{trans_id}','TransactionController@editTransactionPost');
+Route::get('transaction/delete/{trans_id}','TransactionController@deleteTransaction');
+
+
 
 
 

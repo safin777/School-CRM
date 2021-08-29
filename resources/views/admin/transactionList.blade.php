@@ -45,7 +45,7 @@
                                   <td>{{$transaction->timestamp}}</td>
                                  <td class="text-right">
                                     <a href="{{ URL::to('transaction/edit/'.base64_encode($transaction->trans_id)) }}" class="btn btn-sm btn-success"><i class="fa fa-check"></i>Details and Edit</a>
-                                    <a href="{{ URL::to('teahcer/delete/'.base64_encode($transaction->trans_id)) }}" class="btn btn-sm btn-danger" onclick=" return confirm('Are you sure to delete?')"><i class="fal fa-trash-alt"></i>Delete</a>
+                                    <a href="{{ URL::to('transaction/delete/'.base64_encode($transaction->trans_id)) }}" class="btn btn-sm btn-danger" onclick=" return confirm('Are you sure to delete?')"><i class="fal fa-trash-alt"></i>Delete</a>
                                  </td>
                              </tr>
                             @endforeach

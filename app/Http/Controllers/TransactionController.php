@@ -109,6 +109,19 @@ class TransactionController extends Controller
     }
 
 
+    public function deleteTransaction($trans_id){
+        $trans_id = base64_decode($trans_id);
+
+                    DB::table('transactions')
+                    ->where('trans_id', $trans_id)
+                    ->delete();
+
+                    $not="Row deleted successfully";
+                    return redirect('transaction.list')->withErrors($not);
+    }
+    
+
+
 
 
 
