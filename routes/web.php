@@ -71,6 +71,10 @@ Route::post('transaction/edit/post/{trans_id}','TransactionController@editTransa
 Route::get('transaction/delete/{trans_id}','TransactionController@deleteTransaction');
 
 
+//ADD SUBJECT
+
+Route::get('admin.addSubject','AdminController@addSubject');
+Route::post('add/subject','AdminController@addSubjectPost');
 
 
 

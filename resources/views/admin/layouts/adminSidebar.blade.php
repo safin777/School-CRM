@@ -95,6 +95,10 @@
                                 <li><a href="{{ url('add.examination.fees') }}">Examination Fee</a></li>
 							</ul>
 						</li>
+
+                        <li class="active">
+                            <a href="{{ url('admin.addSubject') }}"><i class="fa fa-plus-square-o"></i> <span>Add Subject</span></a>
+                        </li>
                     </ul>
                 </div>
             </div>
