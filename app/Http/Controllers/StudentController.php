@@ -244,8 +244,64 @@ class StudentController extends Controller
 
    }
 
-   public function viewDownloadAssignment(){
+   public function viewDownloadAssignment()
+   {
        return view ('student.downloadAssignment');
    }
+
+
+   public function downloadAssignment(Request $req)
+   {
+
+
+    $subject_id = $req->subject_id;
+    $t_id = $req->t_id;
+    $validatedData=Validator::make($req->all(),[
+
+           't_id' => 'required',
+           'subject_id' => 'required',
+   ],
+
+   [
+       't_id.required' => 'Select teacher name.',
+       'subject_id.required' => 'Select Subject.',
+
+   ]);
+
+   if($validatedData->fails())
+   {
+   return Redirect::back()->withErrors($validatedData);
+   }
+
+   else{
+   $assignment = DB::table('down_assignment')
+   ->join('subject_list','subject_list.subject_id','=','down_assignment.subject_id')
+   ->join('teachers','teachers.t_id','=','down_assignment.t_id')
+   ->select('down_assignment.*','subject_list.subject_name','subject_list.subject_code','teachers.*')
+   ->where('down_assignment.t_id','=',$t_id)
+   ->where('down_assignment.subject_id','=',$subject_id)
+   ->get();
+
+   return view('student.showDownloadAssignment',['assignment'=>$assignment]);
+  }
+
+   }
+
+
+   public function downloadAssignmentGet($d_assign_id){
+
+    $file= DB::table('down_assignment')
+    ->where('d_assign_id',$d_assign_id)
+    ->first();
+
+ $url=$file->file_path;
+ //return response()->json($url);
+
+ return response()->download(storage_path("../public/D Assignment/{$url}"));
+   }
+
+
+
+
 
 }

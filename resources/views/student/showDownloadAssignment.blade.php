@@ -91,6 +91,49 @@
                 </form>
             </div>
         </div>
+
+
+        <div class="row mx-auto">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                <div class="card-header bg-primary">
+                    <h3 class="card-title">Search Results</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                           <tr>
+                              <th>Assignment ID</th>
+                              <th>Teacher Name</th>
+                              <th>Subject Name</th>
+                              <th>File</th>
+                              <th>Time</th>
+                              <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($assignment as $a )
+                            <tr>
+
+                                <td>{{$a->d_assign_id}} </td>
+                                <td>{{$a->t_name}}</td>
+                                <td>{{$a->subject_name}} </td>
+                                <td>{{$a->file_path}}</td>
+                                <td>{{$a->timestamp}}</td>
+                                <td class="text-right">
+                                    <a href="{{URL::to('student/assignment/download/'.$a->d_assign_id)}}" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-download">download</i></a>
+
+                                 </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 @endsection

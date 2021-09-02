@@ -104,6 +104,12 @@ Route::group(['middleware'=>['CustomAuth']],function(){
     Route::get('student.upload.assignment','StudentController@viewUploadAssignment')->name('student.upload.assignment');
     Route::post('student/upload/assignment','StudentController@uploadAssignment');
     Route::get('student/download/assignment','StudentController@viewDownloadAssignment');
+    Route::post('student/download/assignment/post','StudentController@downloadAssignment');
+
+    Route::get('student/assignment/download/{d_assign_id}','StudentController@downloadAssignmentGet');
+
+
+    
 
 
 
