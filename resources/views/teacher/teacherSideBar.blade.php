@@ -8,16 +8,18 @@
     <title>School Management</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/style2.css') }}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  </head>
     <!--[if lt IE 9]>
 		<script src="/assets/js/html5shiv.min.js"></script>
@@ -72,11 +74,11 @@
                     <ul>
                         <li class="menu-title">Main</li>
                         <li class="active">
-                            <a href="{{ url('student.dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                            <a href="{{ url('teacher.teacherDashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Notices </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-envelope-square"></i> <span> Notices </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="{{ url('teacher.view.uploadNotice') }}">Upload Notice</a></li>
                                 <li><a href="{{ url('teacher.view.allNotice') }}">View All Notice</a></li>
@@ -84,7 +86,7 @@
 						</li>
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Result </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-plus-square-o"></i> <span> Result </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="{{ url('view.uploadResult') }}">Upload Result</a></li>
                                 <li><a href="{{ url('view.search.result') }}"> Search Result</a></li>
@@ -92,7 +94,7 @@
 						</li>
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Assignment</span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fas fa-file-code"></i> <span> Assignment</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="{{ url('teacher/view/upload/assignment') }}">Upload Assignment</a></li>
                                 <li><a href="{{ url('teacher/view/search/assignment') }}">Search Assignment</a></li>
@@ -101,7 +103,7 @@
 						</li>
 
                         <li class="active">
-							<a href="{{url('teacher/upload/application')}}"><i class="fa fa-user"></i> <span>Upload Application</span> <span class="menu-arrow"></span></a>
+							<a href="{{url('teacher/upload/application')}}"><i class="fas fa-file-upload"></i> <span>Upload Application</span> <span class="menu-arrow"></span></a>
 
 						</li>
 
@@ -112,6 +114,8 @@
 
         </div>
         @yield('content')
+        @yield('styles')
+
 
 
 
@@ -126,7 +130,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
         <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
 
         <script>
@@ -170,7 +173,7 @@
                });
            });
    </script>
-
+     @yield('javascript')
     </body>
 
 

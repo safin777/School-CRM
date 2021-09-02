@@ -51,14 +51,6 @@
 					}
 				</script>
 				<br>
-				<div>
-					<a href="{{ url('signup/create') }}">Forget Password?</a>
-					<br>
-					<br>
-
-				</div>
-
-
 			</form>
 		</div>
 		<div>

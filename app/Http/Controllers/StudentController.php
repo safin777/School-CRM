@@ -30,7 +30,7 @@ class StudentController extends Controller
                 ->where('s_password',$password)
                 ->first();
                // dd(DB::getQueryLog());
-       
+
 
 
         if ($user != null ){
@@ -242,6 +242,10 @@ class StudentController extends Controller
 
         }
 
+   }
+
+   public function viewDownloadAssignment(){
+       return view ('student.downloadAssignment');
    }
 
 }

@@ -83,17 +83,10 @@ Route::post('add/subject','AdminController@addSubjectPost');
 
 
 
-// Student end route
-
-//student login
+// STUDENT CONTROLLER ROUTE
 
 Route::post('post/student/login','StudentController@verifyLogin');
 
-
-//student dashboard
-
-//result Section
-//Route::get('view/student/classTestResult/{s_id}','StudentController@viewClassTestResult');
 
 Route::group(['middleware'=>['CustomAuth']],function(){
     Route::get('student.dashboard','StudentController@viewDashboard')->name('student.dashboard');
@@ -105,8 +98,13 @@ Route::group(['middleware'=>['CustomAuth']],function(){
 
     Route::post('search/test/result','StudentController@searchTest');
     Route::post('search/term/result','StudentController@searchTerm');
+
+    //ASSIGNMENT
+
     Route::get('student.upload.assignment','StudentController@viewUploadAssignment')->name('student.upload.assignment');
     Route::post('student/upload/assignment','StudentController@uploadAssignment');
+    Route::get('student/download/assignment','StudentController@viewDownloadAssignment');
+
 
 
 });
@@ -137,6 +135,7 @@ Route::get('teacher/result/edit/{result_id}','TeacherController@viewEditResult')
 Route::post('teacher/upload/result/{result_id}','TeacherController@postEditResult');
 
 Route::get('teacher/result/delete/{result_id}','TeacherController@deleteResult');
+
 
 
 
