@@ -108,8 +108,13 @@ Route::group(['middleware'=>['CustomAuth']],function(){
 
     Route::get('student/assignment/download/{d_assign_id}','StudentController@downloadAssignmentGet');
 
+    //APPLICATION DOWNLOAD
 
-    
+    Route::get('student/download/application','StudentController@viewDownloadApplication');
+    Route::get('student/application/download/{app_id}','StudentController@downloadApplication');
+
+
+
 
 
 

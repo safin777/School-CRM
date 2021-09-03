@@ -101,11 +101,12 @@
 							</ul>
 						</li>
 
-                        <li class="submenu">
-							<a href="#"><i class="fas fa-file-upload"></i> <span>Download Application </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-							</ul>
-						</li>
+
+                        <li>
+                            <a href="{{url('student/download/application')}}"><i class="fas fa-file-upload"></i> <span>Download Application </span> <span class="menu-arrow"></span></a>
+                        </li>
+
+
 
                     </ul>
                 </div>

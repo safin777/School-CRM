@@ -288,7 +288,8 @@ class StudentController extends Controller
    }
 
 
-   public function downloadAssignmentGet($d_assign_id){
+   public function downloadAssignmentGet($d_assign_id)
+   {
 
     $file= DB::table('down_assignment')
     ->where('d_assign_id',$d_assign_id)
@@ -299,6 +300,29 @@ class StudentController extends Controller
 
  return response()->download(storage_path("../public/D Assignment/{$url}"));
    }
+
+
+   public function viewDownloadApplication(){
+    $applications=DB::table('applications')
+    ->get();
+    return view('student.downloadApplication',['applications'=>$applications]);
+
+   }
+
+   public function downloadApplication($app_id){
+    $file= DB::table('applications')
+    ->where('app_id',$app_id)
+    ->first();
+
+ $url=$file->app_file_path;
+ //return response()->json($url);
+
+ return response()->download(storage_path("../public/applications/{$url}"));
+
+   }
+
+
+
 
 
 
