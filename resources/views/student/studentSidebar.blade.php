@@ -3,24 +3,26 @@
 
 
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico">
-    <title>School Management</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/style2.css') }}">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- </head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico">
+        <title>School Management</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset ('/assets/css/style2.css') }}">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     </head>
     <!--[if lt IE 9]>
 		<script src="/assets/js/html5shiv.min.js"></script>
 		<script src="/assets/js/respond.min.js"></script>
@@ -78,13 +80,13 @@
                         </li>
 
                         <li>
-                            <a href="{{ url('student.notice') }}"><i class="fa fa-user-md"></i> <span>Notice</span></a>
+                            <a href="{{ url('student.notice') }}"><i class="fa fa-envelope-square"></i> <span>Notice</span></a>
                         </li>
 
 
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Result </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-plus-square-o"></i> <span> Result </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="{{ url('view.student.classTestResult') }}">Class Test Result</a></li>
                                 <li><a href="{{ url('view.student.termResult') }}"> Term Exam Result</a></li>
@@ -92,7 +94,7 @@
 						</li>
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Assignment</span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fas fa-file-code"></i> <span> Assignment</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="{{ url('student.upload.assignment') }}">Upload Assignment</a></li>
                                 <li><a href="{{ url('student/download/assignment') }}">Download Assignment</a></li>
@@ -100,7 +102,7 @@
 						</li>
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span>Download Application </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fas fa-file-upload"></i> <span>Download Application </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 							</ul>
 						</li>
